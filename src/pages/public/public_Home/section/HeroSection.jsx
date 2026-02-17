@@ -21,7 +21,7 @@ const HeroSection = () => {
 
   return (
     <section
-      className="hero-section bg-linear-to-t from-[#fbc1ab] to-[#fff8f5] dark:from-gray-800 dark:to-gray-900"
+      className="hero-section bg-linear-to-t from-[#fbc1ab] to-[#fff8f5] dark:from-gray-800 dark:to-gray-900 relative"
       style={{
         backgroundImage: "url('cornerbg.png')",
         backgroundPosition: 'center',
@@ -31,15 +31,15 @@ const HeroSection = () => {
       {/* bg.png (layer 1) + translucent overlay (layer 2) */}
       <div className="hero-bg-wrap relative">
         <img src="/bg.png" alt="" className="h-full w-full object-cover object-top" />
-        <div className="absolute inset-0 bg-[#FFF7F4CC]/80" />
+        <div className="absolute inset-0 " />
       </div>
-
+<div className='bg-gradient-to-br from-[#fcb9a0] to-[#fff7f4] absolute inset-0 opacity-70' ></div>
       {/* Navbar */}
-      <header className="hero-navbar">
+      <header className="hero-navbar z-50">
         <div className="hero-navbar-inner">
           <div />
           <div className="hero-toggle-wrapper">
-            <span className="hero-toggle-label">MODE</span>
+            <span className="text-2xl font-display text-[#353535]">MODE</span>
             <button
               aria-label="Toggle theme"
               onClick={() => setDark((d) => !d)}
@@ -53,8 +53,8 @@ const HeroSection = () => {
       </header>
 
       {/* Main content */}
-      <div className="hero-content">
-        <div className="hero-logo-wrapper">
+      <div className="hero-content z-50">
+        <div className="hero-logo-wrapper mb-4">
           <img
             src={dark ? '/topImageBlack.png' : '/topImage.png'}
             alt="YouKnowBall Logo"
@@ -62,18 +62,18 @@ const HeroSection = () => {
           />
         </div>
 
-        <h1 className="hero-title">
+        <h1 className="hero-title text-7xl">
           <span className="hero-title-white">YOUKNOW</span>
           <span className="hero-title-orange">BALL</span>
         </h1>
 
-        <p className="hero-subtitle">
+        <p className="hero-subtitle text-xl my-2.5">
           The ultimate test of NBA knowledge. Guess the
           <br />
           player before time runs out.
         </p>
 
-        <div className="hero-cards">
+        <div className="hero-cards mt-3">
           <div className="hero-card hero-card-1">
             <img src="/cards/target.png" alt="target" className="hero-card-icon" />
             <div className="hero-card-body">

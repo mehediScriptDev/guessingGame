@@ -210,7 +210,7 @@
   --color-cta-active: #ff8a4a;
   --color-cta-text: #fff;
   --hero-title-color: #1a1a1a;
-  --hero-subtitle-color: rgba(60, 40, 30, 0.7);
+  --hero-subtitle-color: #0A0300B8;
   --hero-muted: rgba(80, 60, 40, 0.6);
   --hero-sublabel-color: #2d2d2d;
   --hero-overlay: rgba(252, 224, 208, 0.3);
@@ -296,13 +296,7 @@ html.theme-dark .hero-bg-overlay {
   gap: 10px;
 }
 
-.hero-toggle-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--hero-title-color);
-  text-transform: uppercase;
-}
+
 .hero-toggle-btn {
   position: relative;
   display: flex;
@@ -360,7 +354,7 @@ html.theme-dark .hero-toggle-emoji {
 
 /* ── Logo ── */
 .hero-logo-wrapper {
-  margin: 0 auto 12px;
+  
   width: 140px;
 }
 .hero-logo {
@@ -374,7 +368,7 @@ html.theme-dark .hero-toggle-emoji {
 /* ── Title ── */
 .hero-title {
   font-family: var(--font-display);
-  font-size: 48px;
+  
   font-weight: 400;
   letter-spacing: 2px;
   margin: 0 0 6px;
@@ -391,11 +385,11 @@ html.theme-dark .hero-toggle-emoji {
 /* ── Subtitle ── */
 .hero-subtitle {
   font-family: var(--font-primary);
-  font-size: 13px;
-  line-height: 1.6;
+
+  /* line-height: 1.6; */
   color: var(--hero-subtitle-color);
-  margin: 0 auto 32px;
-  max-width: 380px;
+  /* margin: 0 auto 32px; */
+  /* max-width: 380px; */
 }
 
 /* ── Cards ── */
