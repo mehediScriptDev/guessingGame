@@ -124,7 +124,7 @@
   }
 
   body {
-    background: var(--bg-gradient, #000);
+    /* background: var(--bg-gradient, #000); */
     font-family: var(--font-primary);
     margin: 0;
     padding: 0;
@@ -245,7 +245,6 @@ html.theme-dark {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--bg-gradient);
   overflow: hidden;
 }
 

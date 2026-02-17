@@ -20,11 +20,18 @@ const HeroSection = () => {
   }, [dark]);
 
   return (
-    <section className="hero-section">
-      {/* bg.png bottom half + overlay on top */}
-      <div className="hero-bg-wrap">
-        <img src="/bg.png" alt="" className="hero-bg-bottom" />
-        <div className="hero-bg-overlay" />
+    <section
+      className="hero-section bg-linear-to-t from-[#fbc1ab] to-[#fff8f5] dark:from-gray-800 dark:to-gray-900"
+      style={{
+        backgroundImage: "url('cornerbg.png')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* bg.png (layer 1) + translucent overlay (layer 2) */}
+      <div className="hero-bg-wrap relative">
+        <img src="/bg.png" alt="" className="h-full w-full object-cover object-top" />
+        <div className="absolute inset-0 bg-[#FFF7F4CC]/80" />
       </div>
 
       {/* Navbar */}
