@@ -346,7 +346,7 @@ html.theme-dark .hero-toggle-emoji {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 960px;
+  /* max-width: 960px; */
   margin: 0 auto;
   padding: 0 24px 60px;
   text-align: center;
@@ -397,13 +397,13 @@ html.theme-dark .hero-toggle-emoji {
   display: flex;
   gap: 20px;
   margin: 0 auto 36px;
-  max-width: 840px;
+  /* max-width: 840px; */
   width: 100%;
 }
 .hero-card {
   flex: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -427,13 +427,13 @@ html.theme-dark .hero-card:hover {
 
 /* Card gradients */
 .hero-card-1 {
-  background: linear-gradient(135deg, #f8b297 0%, #f6eeeb 100%);
+  background: linear-gradient(135deg, #f8b297 0%,#f6eeeb 50%, #f6eeeb 100%);
 }
 .hero-card-2 {
-  background: linear-gradient(135deg, #9dddf6 0%, #f6eeeb 100%);
+  background: linear-gradient(135deg, #9dddf6 0%,#f6eeeb 50%, #f6eeeb 100%);
 }
 .hero-card-3 {
-  background: linear-gradient(135deg, #e394f5 0%, #f6eeeb 100%);
+  background: linear-gradient(135deg, #e394f5 0%,#f6eeeb 50%, #f6eeeb 100%);
 }
 html.theme-dark .hero-card-1 {
   background: linear-gradient(135deg, rgba(248, 178, 151, 0.25) 0%, rgba(40, 22, 12, 0.7) 100%);
@@ -446,8 +446,7 @@ html.theme-dark .hero-card-3 {
 }
 
 .hero-card-icon {
-  width: 56px;
-  height: 56px;
+  
   object-fit: contain;
   flex-shrink: 0;
   margin-top: 4px;
@@ -461,14 +460,14 @@ html.theme-dark .hero-card-3 {
 }
 .hero-card-label {
   font-family: var(--font-primary);
-  font-size: 12px;
+  /* font-size: 12px; */
   font-weight: 600;
   color: var(--hero-muted);
   letter-spacing: 0.3px;
 }
 .hero-card-number {
   font-family: var(--font-display);
-  font-size: 32px;
+  /* font-size: 32px; */
   font-weight: 400;
   color: #ff6b2d;
   line-height: 1.1;
@@ -476,15 +475,15 @@ html.theme-dark .hero-card-3 {
 }
 .hero-card-sublabel {
   font-family: var(--font-primary);
-  font-size: 13px;
+  /* font-size: 13px; */
   font-weight: 700;
   color: var(--hero-sublabel-color);
   margin-top: 2px;
 }
 .hero-card-desc {
   font-family: var(--font-primary);
-  font-size: 10px;
-  line-height: 1.45;
+  /* font-size: 10px; */
+  /* line-height: 1.45; */
   color: var(--hero-muted);
   margin-top: 4px;
 }
