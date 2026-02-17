@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import PLAYERS from '../../../data/players';
-import './game.css';
 
 function shuffle(arr) {
   const a = [...arr];
@@ -124,21 +123,34 @@ export default function GameView() {
 
   /* ── shared pieces ── */
   const bgBottom = (
-    <div className="gm-bg-wrap">
-      <img src="/bg.png" alt="" className="gm-bg-bottom" />
-      <div className="gm-bg-overlay" />
-    </div>
+    <>
+      <div className="absolute bottom-0 left-0 w-full h-1/2 z-0 pointer-events-none">
+        <img src="/bg.png" alt="" className="w-full h-full object-cover object-[center_top] block" />
+        <div className="absolute inset-0" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#fcb9a0] to-[#fff7f4] dark:from-gray-800 dark:to-gray-900 opacity-70 z-0" />
+    </>
   );
 
   const navbar = (
-    <header className="gm-navbar">
-      <div className="gm-navbar-inner">
-        <div />
-        <div className="gm-toggle-wrap">
-          <span className="gm-toggle-label">MODE</span>
-          <button className="gm-toggle-btn" onClick={() => setDark((d) => !d)}>
-            <span className="gm-toggle-emoji">{dark ? '🌙' : '☀️'}</span>
-            <div className={`gm-toggle-knob ${dark ? 'on' : ''}`} />
+    <header className="relative z-30 w-full px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+      <div className="flex items-center justify-end max-w-[1100px] mx-auto">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span 
+            className="text-[10px] sm:text-[11px] font-bold tracking-[1.5px] uppercase"
+            style={{ color: 'var(--hero-title-color)' }}
+          >
+            MODE
+          </span>
+          <button 
+            className="relative flex items-center w-12 sm:w-14 h-6 sm:h-7 rounded-full p-0.5 transition-colors duration-300 border-none cursor-pointer"
+            style={{ background: 'var(--toggle-track)' }}
+            onClick={() => setDark((d) => !d)}
+          >
+            <span className={`absolute text-xs sm:text-sm z-20 pointer-events-none top-1/2 -translate-y-1/2 transition-all duration-300 ${dark ? 'left-7 sm:left-8' : 'left-2'}`}>
+              {dark ? '🌙' : '☀️'}
+            </span>
+            <div className={`w-5 sm:w-[22px] h-5 sm:h-[22px] bg-white rounded-full shadow-md transition-transform duration-300 z-10 ${dark ? 'translate-x-6 sm:translate-x-7' : ''}`} />
           </button>
         </div>
       </div>
@@ -148,48 +160,90 @@ export default function GameView() {
   /* ════════════════════ PLAYING ════════════════════ */
   if (phase === 'playing') {
     return (
-      <section className="gm-section">
+      <section 
+        className="relative w-full min-h-screen flex flex-col overflow-hidden"
+        style={{ background: 'var(--bg-gradient)' }}
+      >
         {bgBottom}
         {navbar}
-        <div className="gm-content">
-          <div className="gm-logo-wrap">
+        <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-[760px] mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
+          <div className="mx-auto mb-2 w-20 sm:w-24 md:w-28">
             <img
               src={dark ? '/topImageBlack.png' : '/topImage.png'}
               alt="Logo"
-              className="gm-logo"
+              className="w-full h-auto block mx-auto drop-shadow-lg"
             />
           </div>
 
-          <div className="gm-scorebar">
-            <div className="gm-scorebar-left">
-              <span className="gm-scorebar-label">CURRENT SCORE</span>
-              <span className="gm-scorebar-value">{String(score).padStart(2, '0')}</span>
+          <div className="flex items-end justify-between border-b border-black/10 dark:border-white/10 pb-1.5 sm:pb-2 mb-4 sm:mb-5 w-full">
+            <div className="flex flex-col">
+              <span 
+                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase"
+                style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+              >
+                CURRENT SCORE
+              </span>
+              <span 
+                className="text-3xl sm:text-[42px] leading-none text-[#ff6b2d]"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {String(score).padStart(2, '0')}
+              </span>
             </div>
-            <span className="gm-scorebar-round">
+            <span 
+              className="self-center text-xs sm:text-sm font-bold tracking-wider text-[#ff6b2d]"
+              style={{ fontFamily: 'var(--font-primary)' }}
+            >
               ROUND {String(round).padStart(2, '0')}/{String(ROUNDS).padStart(2, '0')}
             </span>
-            <div className="gm-scorebar-right">
-              <span className="gm-scorebar-label">POT. POINTS</span>
-              <span className="gm-scorebar-value">{pot}</span>
+            <div className="flex flex-col items-end">
+              <span 
+                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase"
+                style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+              >
+                POT. POINTS
+              </span>
+              <span 
+                className="text-3xl sm:text-[42px] leading-none text-[#ff6b2d]"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {pot}
+              </span>
             </div>
           </div>
 
-          <div className="gm-image-frame">
-            <img src={player.image} alt="Guess this player" className="gm-image" />
+          <div className="w-full max-w-[600px] mx-auto mb-4 sm:mb-5 rounded-xl sm:rounded-2xl overflow-hidden bg-[rgba(30,20,15,0.85)] border-2 sm:border-3 border-[rgba(80,60,40,0.5)] dark:border-[rgba(120,80,50,0.4)] shadow-2xl">
+            <img 
+              src={player.image} 
+              alt="Guess this player" 
+              className="w-full h-auto block min-h-[240px] sm:min-h-[280px] object-cover"
+              style={{ background: 'linear-gradient(135deg, #3a2a1a 0%, #1a100a 100%)' }}
+            />
           </div>
 
-          <div className="gm-timer">
-            <div className="gm-timer-track">
-              <div className="gm-timer-fill" style={{ width: `${pct}%`, background: barColor }} />
+          <div className="flex items-center gap-2 sm:gap-3 max-w-[600px] mx-auto mb-4 sm:mb-5 w-full">
+            <div className="flex-1 h-3 sm:h-[14px] rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
+              <div 
+                className="h-full rounded-full transition-[width] duration-100 ease-linear"
+                style={{ width: `${pct}%`, background: barColor }} 
+              />
             </div>
-            <span className="gm-timer-num" style={{ color: barColor }}>
+            <span 
+              className="text-sm sm:text-base font-extrabold min-w-6 text-center"
+              style={{ fontFamily: 'var(--font-primary)', color: barColor }}
+            >
               {Math.ceil(timeLeft)}
             </span>
           </div>
 
-          <form className="gm-input-area" onSubmit={handleSubmit}>
+          <form className="flex gap-0 max-w-[520px] mx-auto mb-2 sm:mb-3 rounded-lg overflow-hidden shadow-lg" onSubmit={handleSubmit}>
             <input
-              className="gm-input"
+              className="flex-1 px-4 sm:px-5 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold tracking-wide outline-none border-2 border-transparent border-l-4 border-l-[#ff6b2d] backdrop-blur-sm transition-colors focus:border-[#ff6b2d]"
+              style={{ 
+                fontFamily: 'var(--font-primary)',
+                color: 'var(--hero-title-color)',
+                background: 'var(--card-bg)'
+              }}
               type="text"
               placeholder="GUESS THE PLAYER"
               value={guess}
@@ -199,11 +253,24 @@ export default function GameView() {
               }}
               autoFocus
             />
-            <button type="submit" className="gm-submit-btn">
+            <button 
+              type="submit" 
+              className="px-5 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-bold text-[#ff6b2d] border-2 border-transparent border-l backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-[#ff6b2d] hover:text-white"
+              style={{ 
+                fontFamily: 'var(--font-primary)',
+                background: 'var(--card-bg)', 
+                borderLeftColor: 'var(--card-border)' 
+              }}
+            >
               Submit
             </button>
           </form>
-          <p className="gm-tip">Tip: Try first name, last name or full name.</p>
+          <p 
+            className="text-xs m-0"
+            style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+          >
+            Tip: Try first name, last name or full name.
+          </p>
         </div>
       </section>
     );
@@ -214,22 +281,26 @@ export default function GameView() {
     const isPerfect = result.type === 'perfect';
     const isPartial = result.type === 'partial';
     const iconClass = isPerfect
-      ? 'gm-icon-perfect'
+      ? 'bg-[rgba(187,247,208,0.45)] dark:bg-[rgba(34,197,94,0.15)] text-[#16a34a]'
       : isPartial
-        ? 'gm-icon-partial'
-        : 'gm-icon-wrong';
+        ? 'bg-[rgba(254,215,170,0.45)] dark:bg-[rgba(249,115,22,0.15)] text-[#ea580c]'
+        : 'bg-[rgba(254,202,202,0.45)] dark:bg-[rgba(239,68,68,0.15)] text-[#dc2626]';
     const heading = isPerfect ? 'Perfect!' : isPartial ? 'Close!' : 'INCORRECT.';
 
     return (
-      <section className="gm-section">
+      <section 
+        className="relative w-full min-h-screen flex flex-col overflow-hidden"
+        style={{ background: 'var(--bg-gradient)' }}
+      >
         {bgBottom}
         {navbar}
-        <div className="gm-content gm-result-content">
-          <div className={`gm-result-circle ${iconClass}`}>
+        <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-[760px] mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-10 sm:pb-12 text-center">
+          <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 ${iconClass}`}>
             {isPerfect || isPartial ? (
               <svg
-                width="48"
-                height="48"
+                width="40"
+                height="40"
+                className="sm:w-12 sm:h-12"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -246,8 +317,9 @@ export default function GameView() {
               </svg>
             ) : (
               <svg
-                width="48"
-                height="48"
+                width="40"
+                height="40"
+                className="sm:w-12 sm:h-12"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -261,21 +333,57 @@ export default function GameView() {
               </svg>
             )}
           </div>
-          <h2 className="gm-result-heading">{heading}</h2>
-          <p className="gm-result-pts">
-            <span className="gm-result-pts-num">+{result.points}</span>
-            <span className="gm-result-pts-label"> PTS</span>
+          <h2 
+            className="text-3xl sm:text-4xl md:text-[36px] m-0 mb-1"
+            style={{ fontFamily: 'var(--font-display)', color: 'var(--hero-title-color)' }}
+          >
+            {heading}
+          </h2>
+          <p className="m-0 mb-6 sm:mb-7">
+            <span 
+              className="text-xl sm:text-2xl md:text-[22px] text-[#ff6b2d]"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              +{result.points}
+            </span>
+            <span 
+              className="text-sm ml-1"
+              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            >
+              {' '}PTS
+            </span>
           </p>
-          <div className="gm-result-card">
-            <span className="gm-result-card-sub">The player was</span>
-            <h3 className="gm-result-card-name">
+          <div 
+            className="max-w-[420px] mx-auto mb-5 sm:mb-6 rounded-xl px-6 sm:px-8 py-5 sm:py-6 backdrop-blur-xl text-center"
+            style={{ 
+              background: 'var(--card-bg)', 
+              border: '1px solid var(--card-border)' 
+            }}
+          >
+            <span 
+              className="block mb-1.5 text-xs"
+              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            >
+              The player was
+            </span>
+            <h3 
+              className="text-xl sm:text-2xl font-bold m-0 mb-1.5"
+              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-title-color)' }}
+            >
               {result.player.firstName} {result.player.lastName}.
             </h3>
-            <span className="gm-result-card-meta">
+            <span 
+              className="text-xs"
+              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            >
               {result.player.team} • {result.player.era}
             </span>
           </div>
-          <button className="gm-next-btn" onClick={nextRound}>
+          <button 
+            className="block w-full max-w-[420px] mx-auto px-6 sm:px-8 py-3 sm:py-3.5 border-none rounded-lg text-sm sm:text-[15px] font-bold text-white bg-[#ff6b2d] cursor-pointer transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
+            style={{ fontFamily: 'var(--font-primary)' }}
+            onClick={nextRound}
+          >
             {round >= ROUNDS ? 'See Results' : 'Next Round'}
           </button>
         </div>
@@ -285,52 +393,132 @@ export default function GameView() {
 
   /* ════════════════════ GAME OVER ════════════════════ */
   return (
-    <section className="gm-section">
+    <section 
+      className="relative w-full min-h-screen flex flex-col overflow-hidden"
+      style={{ background: 'var(--bg-gradient)' }}
+    >
       {bgBottom}
       {navbar}
-      <div className="gm-content gm-gameover-content">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-[760px] mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
         {/* Logo */}
-        <div className="gm-logo-wrap gm-logo-wrap-lg">
-          <img src={dark ? '/topImageBlack.png' : '/topImage.png'} alt="Logo" className="gm-logo" />
+        <div className="mx-auto mb-1 w-28 sm:w-32 md:w-[130px]">
+          <img 
+            src={dark ? '/topImageBlack.png' : '/topImage.png'} 
+            alt="Logo" 
+            className="w-full h-auto block mx-auto drop-shadow-lg" 
+          />
         </div>
 
         {/* Your Score heading */}
-        <h2 className="gm-over-title">
-          <span className="gm-over-title-your">Your </span>
-          <span className="gm-over-title-score">Score</span>
+        <h2 
+          className="text-3xl sm:text-4xl md:text-[40px] font-normal my-1 mb-3 sm:mb-4 tracking-wide"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          <span className="text-[#ff6b2d] italic">Your </span>
+          <span style={{ color: 'var(--hero-title-color)' }}>Score</span>
         </h2>
 
         {/* Score card */}
-        <div className="gm-over-score-card">
-          <span className="gm-over-score-num">{String(score).padStart(2, '0')}</span>
+        <div 
+          className="inline-block rounded-xl px-8 sm:px-10 py-3 sm:py-4 mb-1.5 backdrop-blur-xl"
+          style={{ 
+            background: 'var(--card-bg)', 
+            border: '1px solid var(--card-border)' 
+          }}
+        >
+          <span 
+            className="text-4xl sm:text-5xl md:text-[52px] leading-none"
+            style={{ fontFamily: 'var(--font-display)', color: 'var(--hero-title-color)' }}
+          >
+            {String(score).padStart(2, '0')}
+          </span>
         </div>
-        <p className="gm-over-score-label">ACCUMULATED SKILL POINTS</p>
+        <p 
+          className="text-[9px] sm:text-[10px] font-bold tracking-[2px] uppercase m-0 mb-4 sm:mb-5"
+          style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+        >
+          ACCUMULATED SKILL POINTS
+        </p>
 
         {/* Stats row */}
-        <div className="gm-over-stats">
-          <div className="gm-over-stat">
-            <span className="gm-over-stat-label">Efficiency</span>
-            <span className="gm-over-stat-value">{String(efficiency).padStart(2, '0')}%</span>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-[560px] mx-auto mb-6 sm:mb-7">
+          <div 
+            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
+            style={{ 
+              background: 'var(--card-bg)', 
+              border: '1px solid var(--card-border)' 
+            }}
+          >
+            <span 
+              className="block text-[11px] font-semibold mb-1"
+              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            >
+              Efficiency
+            </span>
+            <span 
+              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              {String(efficiency).padStart(2, '0')}%
+            </span>
           </div>
-          <div className="gm-over-stat">
-            <span className="gm-over-stat-label">Buckets</span>
-            <span className="gm-over-stat-value">
+          <div 
+            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
+            style={{ 
+              background: 'var(--card-bg)', 
+              border: '1px solid var(--card-border)' 
+            }}
+          >
+            <span 
+              className="block text-[11px] font-semibold mb-1"
+              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            >
+              Buckets
+            </span>
+            <span 
+              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               {String(buckets).padStart(2, '0')}/{String(ROUNDS).padStart(2, '0')}
             </span>
           </div>
-          <div className="gm-over-stat">
-            <span className="gm-over-stat-label">Tier</span>
-            <span className="gm-over-stat-value">{tier}</span>
+          <div 
+            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
+            style={{ 
+              background: 'var(--card-bg)', 
+              border: '1px solid var(--card-border)' 
+            }}
+          >
+            <span 
+              className="block text-[11px] font-semibold mb-1"
+              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            >
+              Tier
+            </span>
+            <span 
+              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              {tier}
+            </span>
           </div>
         </div>
 
         {/* Action buttons */}
-        <div className="gm-over-actions">
-          <Link to="/auth/login" className="gm-over-btn-primary">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-[480px] mx-auto">
+          <Link 
+            to="/auth/login" 
+            className="flex-1 inline-flex items-center justify-center px-4 sm:px-5 py-3 sm:py-3.5 border-none rounded-lg text-xs sm:text-sm font-bold text-white bg-[#ff6b2d] cursor-pointer no-underline transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
+            style={{ fontFamily: 'var(--font-primary)' }}
+          >
             Log In To Save Score
           </Link>
-          <button className="gm-over-btn-secondary" onClick={handlePlayAgain}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <button 
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 border-2 border-[#ff6b2d] rounded-lg text-xs sm:text-sm font-bold text-[#ff6b2d] bg-transparent cursor-pointer transition-all duration-200 hover:bg-[#ff6b2d] hover:text-white hover:-translate-y-0.5"
+            style={{ fontFamily: 'var(--font-primary)' }}
+            onClick={handlePlayAgain}
+          >
+            <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
             Play Again

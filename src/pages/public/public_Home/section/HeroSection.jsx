@@ -72,14 +72,14 @@ const HeroSection = () => {
           player before time runs out.
         </p>
 
-        <div className="hero-cards mt-3 flex flex-col sm:flex-row gap-4 sm:gap-5 md:gap-6 w-full">
+        <div className="hero-cards mt-4 flex flex-col sm:flex-row gap-4 sm:gap-5 md:gap-6 w-full">
           <div className="hero-card hero-card-1 flex items-start gap-3 sm:gap-4 p-4 sm:p-5 md:p-6">
             <img src="/cards/target.png" alt="target" className="hero-card-icon w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28" />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className="hero-card-label text-xs sm:text-sm md:text-base">Total Rounds</span>
+              <span className="hero-card-label text-xs sm:text-sm md:text-base text-[#140601]/72">Total Rounds</span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">05</span>
               <span className="hero-card-sublabel text-sm sm:text-base md:text-lg lg:text-xl">Stages</span>
-              <span className="hero-card-desc text-sm tracking-tight">
+              <span className="hero-card-desc text-[#140601]/72 text-xs sm:text-sm xl:text-base tracking-tight">
                 Five intense challenges to prove you're a true fan
               </span>
             </div>
@@ -88,10 +88,10 @@ const HeroSection = () => {
           <div className="hero-card hero-card-2 flex items-start gap-3 sm:gap-4 p-4 sm:p-5 md:p-6">
             <img src="/cards/diamond.png" alt="diamond" className="hero-card-icon w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28" />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className="hero-card-label text-xs sm:text-sm md:text-base">Max score</span>
+              <span className="hero-card-label text-xs sm:text-sm md:text-base text-[#140601]/72">Max score</span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">1000</span>
               <span className="hero-card-sublabel text-sm sm:text-base md:text-lg lg:text-xl">Per round</span>
-              <span className="hero-card-desc text-sm tracking-tighter">
+              <span className="hero-card-desc text-[#140601]/72 text-xs sm:text-sm xl:text-base tracking-tighter">
                 Correct first name +400, correct last name +400, and +200 bonus if 6 seconds remain.
               </span>
             </div>
@@ -100,10 +100,10 @@ const HeroSection = () => {
           <div className="hero-card hero-card-3 flex items-start gap-3 sm:gap-4 p-4 sm:p-5 md:p-6">
             <img src="/cards/counting.png" alt="hourglass" className="hero-card-icon w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28" />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className="hero-card-label text-xs sm:text-sm md:text-base">Time limit</span>
+              <span className="hero-card-label text-[#140601]/72 text-xs sm:text-sm md:text-base">Time limit</span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">12</span>
               <span className="hero-card-sublabel text-sm sm:text-base md:text-lg lg:text-xl">Second</span>
-              <span className="hero-card-desc text-sm tracking-tight">Every second counts—faster = more points!</span>
+              <span className="hero-card-desc text-[#140601]/72 text-xs sm:text-sm xl:text-base tracking-tight">Every second counts—faster = more points!</span>
             </div>
           </div>
         </div>

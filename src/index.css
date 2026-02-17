@@ -229,7 +229,7 @@ html.theme-dark {
   --color-cta-text: #fff;
   --hero-title-color: #ffffff;
   --hero-subtitle-color: rgba(255, 255, 255, 0.7);
-  --hero-muted: rgba(255, 255, 255, 0.55);
+  --hero-muted: rgba(78, 76, 76, 0.55);
   --hero-sublabel-color: #ffffff;
   --hero-overlay: rgba(20, 10, 5, 0.35);
   --toggle-track: #374151;
@@ -396,7 +396,7 @@ html.theme-dark .hero-toggle-emoji {
 .hero-cards {
   display: flex;
   gap: 20px;
-  margin: 0 auto 36px;
+  /* margin: 0 auto 36px; */
   /* max-width: 840px; */
   width: 100%;
 }
@@ -462,7 +462,7 @@ html.theme-dark .hero-card-3 {
   font-family: var(--font-primary);
   /* font-size: 12px; */
   font-weight: 600;
-  color: var(--hero-muted);
+  /* color: var(--hero-muted); */
   letter-spacing: 0.3px;
 }
 .hero-card-number {
@@ -484,7 +484,7 @@ html.theme-dark .hero-card-3 {
   font-family: var(--font-primary);
   /* font-size: 10px; */
   /* line-height: 1.45; */
-  color: var(--hero-muted);
+  ;
   margin-top: 4px;
 }
 
