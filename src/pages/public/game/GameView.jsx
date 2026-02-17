@@ -128,13 +128,13 @@ export default function GameView() {
         <img src="/bg.png" alt="" className="w-full h-full object-cover object-[center_top] block" />
         <div className="absolute inset-0" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-[#fcb9a0] to-[#fff7f4] dark:from-gray-800 dark:to-gray-900 opacity-70 z-0" />
+      <div className="absolute inset-0 bg-linear-to-br from-[#fcb9a0] to-[#fff7f4] dark:from-gray-800 dark:to-gray-900 opacity-70 z-0" />
     </>
   );
 
   const navbar = (
     <header className="relative z-30 w-full px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-      <div className="flex items-center justify-end max-w-[1100px] mx-auto">
+      <div className="flex items-center justify-end max-w-275 mx-auto">
         <div className="flex items-center gap-2 sm:gap-3">
           <span 
             className="text-[10px] sm:text-[11px] font-bold tracking-[1.5px] uppercase"
@@ -150,7 +150,7 @@ export default function GameView() {
             <span className={`absolute text-xs sm:text-sm z-20 pointer-events-none top-1/2 -translate-y-1/2 transition-all duration-300 ${dark ? 'left-7 sm:left-8' : 'left-2'}`}>
               {dark ? '🌙' : '☀️'}
             </span>
-            <div className={`w-5 sm:w-[22px] h-5 sm:h-[22px] bg-white rounded-full shadow-md transition-transform duration-300 z-10 ${dark ? 'translate-x-6 sm:translate-x-7' : ''}`} />
+            <div className={`w-5 sm:w-5.5 h-5 sm:h-5.5 bg-white rounded-full shadow-md transition-transform duration-300 z-10 ${dark ? 'translate-x-6 sm:translate-x-7' : ''}`} />
           </button>
         </div>
       </div>
@@ -166,7 +166,7 @@ export default function GameView() {
       >
         {bgBottom}
         {navbar}
-        <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-[760px] mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
+        <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-190 mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
           <div className="mx-auto mb-2 w-20 sm:w-24 md:w-28">
             <img
               src={dark ? '/topImageBlack.png' : '/topImage.png'}
@@ -212,17 +212,17 @@ export default function GameView() {
             </div>
           </div>
 
-          <div className="w-full max-w-[600px] mx-auto mb-4 sm:mb-5 rounded-xl sm:rounded-2xl overflow-hidden bg-[rgba(30,20,15,0.85)] border-2 sm:border-3 border-[rgba(80,60,40,0.5)] dark:border-[rgba(120,80,50,0.4)] shadow-2xl">
+          <div className="w-full max-w-150 mx-auto mb-4 sm:mb-5 rounded-xl sm:rounded-2xl overflow-hidden bg-[rgba(30,20,15,0.85)] border-2 sm:border-3 border-[rgba(80,60,40,0.5)] dark:border-[rgba(120,80,50,0.4)] shadow-2xl">
             <img 
               src={player.image} 
               alt="Guess this player" 
-              className="w-full h-auto block min-h-[240px] sm:min-h-[280px] object-cover"
+              className="w-full h-auto block min-h-60 sm:min-h-70 object-cover"
               style={{ background: 'linear-gradient(135deg, #3a2a1a 0%, #1a100a 100%)' }}
             />
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 max-w-[600px] mx-auto mb-4 sm:mb-5 w-full">
-            <div className="flex-1 h-3 sm:h-[14px] rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
+          <div className="flex items-center gap-2 sm:gap-3 max-w-150 mx-auto mb-4 sm:mb-5 w-full">
+            <div className="flex-1 h-3 sm:h-3.5 rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
               <div 
                 className="h-full rounded-full transition-[width] duration-100 ease-linear"
                 style={{ width: `${pct}%`, background: barColor }} 
@@ -236,7 +236,7 @@ export default function GameView() {
             </span>
           </div>
 
-          <form className="flex gap-0 max-w-[520px] mx-auto mb-2 sm:mb-3 rounded-lg overflow-hidden shadow-lg" onSubmit={handleSubmit}>
+          <form className="flex gap-0 max-w-130 mx-auto mb-2 sm:mb-3 rounded-lg overflow-hidden shadow-lg" onSubmit={handleSubmit}>
             <input
               className="flex-1 px-4 sm:px-5 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold tracking-wide outline-none border-2 border-transparent border-l-4 border-l-[#ff6b2d] backdrop-blur-sm transition-colors focus:border-[#ff6b2d]"
               style={{ 
@@ -294,8 +294,8 @@ export default function GameView() {
       >
         {bgBottom}
         {navbar}
-        <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-[760px] mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-10 sm:pb-12 text-center">
-          <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 ${iconClass}`}>
+        <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-190 mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-10 sm:pb-12 text-center">
+          <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-25 md:h-25 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 ${iconClass}`}>
             {isPerfect || isPartial ? (
               <svg
                 width="40"
@@ -354,7 +354,7 @@ export default function GameView() {
             </span>
           </p>
           <div 
-            className="max-w-[420px] mx-auto mb-5 sm:mb-6 rounded-xl px-6 sm:px-8 py-5 sm:py-6 backdrop-blur-xl text-center"
+            className="max-w-105 mx-auto mb-5 sm:mb-6 rounded-xl px-6 sm:px-8 py-5 sm:py-6 backdrop-blur-xl text-center"
             style={{ 
               background: 'var(--card-bg)', 
               border: '1px solid var(--card-border)' 
@@ -380,7 +380,7 @@ export default function GameView() {
             </span>
           </div>
           <button 
-            className="block w-full max-w-[420px] mx-auto px-6 sm:px-8 py-3 sm:py-3.5 border-none rounded-lg text-sm sm:text-[15px] font-bold text-white bg-[#ff6b2d] cursor-pointer transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
+            className="block w-full max-w-105 mx-auto px-6 sm:px-8 py-3 sm:py-3.5 border-none rounded-lg text-sm sm:text-[15px] font-bold text-white bg-[#ff6b2d] cursor-pointer transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
             style={{ fontFamily: 'var(--font-primary)' }}
             onClick={nextRound}
           >
@@ -399,9 +399,9 @@ export default function GameView() {
     >
       {bgBottom}
       {navbar}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-[760px] mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-190 mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
         {/* Logo */}
-        <div className="mx-auto mb-1 w-28 sm:w-32 md:w-[130px]">
+        <div className="mx-auto mb-1 w-28 sm:w-32 md:w-32.5">
           <img 
             src={dark ? '/topImageBlack.png' : '/topImage.png'} 
             alt="Logo" 
@@ -441,9 +441,9 @@ export default function GameView() {
         </p>
 
         {/* Stats row */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-[560px] mx-auto mb-6 sm:mb-7">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-140 mx-auto mb-6 sm:mb-7">
           <div 
-            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
+            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-4.5 text-left backdrop-blur-xl"
             style={{ 
               background: 'var(--card-bg)', 
               border: '1px solid var(--card-border)' 
@@ -463,7 +463,7 @@ export default function GameView() {
             </span>
           </div>
           <div 
-            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
+            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-4.5 text-left backdrop-blur-xl"
             style={{ 
               background: 'var(--card-bg)', 
               border: '1px solid var(--card-border)' 
@@ -483,7 +483,7 @@ export default function GameView() {
             </span>
           </div>
           <div 
-            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
+            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-4.5 text-left backdrop-blur-xl"
             style={{ 
               background: 'var(--card-bg)', 
               border: '1px solid var(--card-border)' 
@@ -505,7 +505,7 @@ export default function GameView() {
         </div>
 
         {/* Action buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-[480px] mx-auto">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-120 mx-auto">
           <Link 
             to="/auth/login" 
             className="flex-1 inline-flex items-center justify-center px-4 sm:px-5 py-3 sm:py-3.5 border-none rounded-lg text-xs sm:text-sm font-bold text-white bg-[#ff6b2d] cursor-pointer no-underline transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
