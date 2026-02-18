@@ -14,7 +14,6 @@ const LoginView = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // mock login: show leaderboard modal for now
     setShowLeaderboard(true);
   };
 
