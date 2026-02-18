@@ -116,7 +116,7 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
         {/* Action buttons */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-120 mx-auto">
           <Link 
-            to="/auth/login" 
+            to="/login" 
             className="flex-1 inline-flex items-center justify-center px-4 sm:px-5 py-3 sm:py-3.5 border-none rounded-lg text-xs sm:text-sm xl:text-base font-bold text-white bg-[#ff6b2d] cursor-pointer no-underline transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
             style={{ fontFamily: 'var(--font-primary)' }}
           >
