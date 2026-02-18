@@ -1,42 +1,23 @@
 export default function SharedHeroBackground({ children }) {
   return (
-    <div
-      /* ── Layer 1: base gradient ── */
-      className="hero-section relative min-h-screen bg-linear-to-t from-[#fbc1ab] to-[#fff8f5] dark:from-transparent dark:to-transparent"
+    <section
+      className="hero-section relative min-h-screen bg-linear-to-t from-[#fbc1ab] to-[#fff8f5] dark:from-gray-800 dark:to-gray-900"
+      style={{
+        backgroundImage: "url('cornerbg.png')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
-      {/* ── Layer 2: fixed basketball background (never scrolls) ── */}
-      <div
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          height: '50%',
-          zIndex: 0,
-          pointerEvents: 'none',
-          backgroundImage: "url('/bg.png')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-        }}
-      />
+      {/* bg.png (layer 1) + translucent overlay (layer 2) */}
+      <div className="hero-bg-wrap relative">
+        <img src="/bg.png" alt="" className="h-full w-full object-cover object-top" />
+        <div className="absolute inset-0" />
+      </div>
+      <div className="absolute inset-0 bg-linear-to-br from-[#fcb9a0] to-[#fff7f4] opacity-70" />
 
-      {/* ── Layer 3: warm gradient overlay (also fixed) ── */}
-      <div
-        style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'linear-gradient(to bottom right, #fcb9a0, #fff7f4)',
-          opacity: 0.7,
-          zIndex: 1,
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* ── content ── */}
       <div className="relative" style={{ zIndex: 2 }}>
         {children}
       </div>
-    </div>
+    </section>
   );
 }
