@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ThemeToggle from '../../../../components/ThemeToggle';
 
 const HeroSection = () => {
   const [dark, setDark] = useState(() => {
@@ -39,15 +40,7 @@ const HeroSection = () => {
         <div className="hero-navbar-inner">
           <div />
           <div className="hero-toggle-wrapper">
-            <span className="font-display text-2xl text-[#353535]">MODE</span>
-            <button
-              aria-label="Toggle theme"
-              onClick={() => setDark((d) => !d)}
-              className="hero-toggle-btn"
-            >
-              <span className="hero-toggle-emoji">{dark ? '🌙' : '☀️'}</span>
-              <div className={`hero-toggle-knob ${dark ? 'toggled' : ''}`} />
-            </button>
+            <ThemeToggle dark={dark} onChange={setDark} />
           </div>
         </div>
       </header>
@@ -136,7 +129,7 @@ const HeroSection = () => {
         <div className="hero-cta-wrapper mt-4 sm:mt-6 md:mt-8">
           <Link
             to="/game"
-            className="hero-cta-btn px-6 py-2.5 text-xs sm:px-10 sm:py-3 sm:text-sm md:px-12 md:py-3.5 md:text-base"
+            className="hero-cta-btn px-6 py-2.5 text-xs sm:px-10 sm:py-3 sm:text-sm md:px-12 md:py-3.5 md:text-base shadow-2xl"
           >
             Enter The Arena
           </Link>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PLAYERS from '../../../data/players';
 import SharedHeroBackground from '../../../components/SharedHeroBackground';
+import ThemeToggle from '../../../components/ThemeToggle';
 import Result from './sections/Result';
 import Score from './sections/Score';
 
@@ -129,24 +130,7 @@ export default function GameView() {
   const navbar = (
     <header className="relative z-30 w-full px-4 sm:px-6 md:px-8 py-3 sm:py-4">
       <div className="flex items-center justify-end max-w-275 mx-auto">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <span 
-            className="text-[10px] sm:text-[11px] font-bold tracking-[1.5px] uppercase"
-            style={{ color: 'var(--hero-title-color)' }}
-          >
-            MODE
-          </span>
-          <button 
-            className="relative flex items-center w-12 sm:w-14 h-6 sm:h-7 rounded-full p-0.5 transition-colors duration-300 border-none cursor-pointer"
-            style={{ background: 'var(--toggle-track)' }}
-            onClick={() => setDark((d) => !d)}
-          >
-            <span className={`absolute text-xs sm:text-sm z-20 pointer-events-none top-1/2 -translate-y-1/2 transition-all duration-300 ${dark ? 'left-7 sm:left-8' : 'left-2'}`}>
-              {dark ? '🌙' : '☀️'}
-            </span>
-            <div className={`w-5 sm:w-5.5 h-5 sm:h-5.5 bg-white rounded-full shadow-md transition-transform duration-300 z-10 ${dark ? 'translate-x-6 sm:translate-x-7' : ''}`} />
-          </button>
-        </div>
+        <ThemeToggle dark={dark} onChange={setDark} />
       </div>
     </header>
   );
@@ -160,7 +144,7 @@ export default function GameView() {
         style={{ background: 'transparent' }}
       >
         {navbar}
-        <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-190 mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
+        <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-195 mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
           <div className="mx-auto mb-2 w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36">
             <img
               src={dark ? '/topImageBlack.png' : '/topImage.png'}
@@ -210,7 +194,7 @@ export default function GameView() {
             <img 
               src={player.image} 
               alt="Guess this player" 
-              className="w-full h-auto block min-h-60 sm:min-h-70 object-cover"
+              className="w-full h-auto block min-h-60 sm:max-h-75 object-cover"
               style={{ background: 'linear-gradient(135deg, #3a2a1a 0%, #1a100a 100%)' }}
             />
           </div>

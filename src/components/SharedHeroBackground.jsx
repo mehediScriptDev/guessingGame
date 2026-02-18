@@ -27,13 +27,13 @@ export default function SharedHeroBackground({ children }) {
           position: 'fixed',
           inset: 0,
           background: 'linear-gradient(to bottom right, #fcb9a0, #fff7f4)',
-          opacity: 0.6,
+          opacity: 0.7,
           zIndex: 1,
           pointerEvents: 'none',
         }}
       />
 
-      {/* ── Content ── */}
+      {/* ── content ── */}
       <div className="relative" style={{ zIndex: 2 }}>
         {children}
       </div>
