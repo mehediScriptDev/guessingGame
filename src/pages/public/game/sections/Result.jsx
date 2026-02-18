@@ -52,7 +52,7 @@ export default function Result({ result, round, ROUNDS, nextRound, bgBottom, nav
           }}
         >
           <span 
-            className="block mb-1.5 text-xs sm:text-sm text-[#140601]"
+            className="block mb-1.5 text-xs sm:text-sm xl:text-base text-[#140601]"
             style={{ fontFamily: 'var(--font-primary)' }}
           >
             The player was
@@ -61,10 +61,10 @@ export default function Result({ result, round, ROUNDS, nextRound, bgBottom, nav
             className="text-xl sm:text-2xl lg:text-4xl font-bold m-0 mb-1.5"
             style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-title-color)' }}
           >
-            {result.player.firstName} {result.player.lastName}.
+            {result.player.firstName} {result.player.lastName}
           </h3>
           <span 
-            className="text-xs sm:text-sm text-[#140601]"
+            className="text-xs sm:text-sm xl:text-base text-[#140601]"
             style={{ fontFamily: 'var(--font-primary)' }}
           >
             {result.player.team} • {result.player.era}

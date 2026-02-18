@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ThemeToggle from '../../../../components/ThemeToggle';
+import Navbar from '../../../../components/Navbar';
 
 const HeroSection = () => {
   const [dark, setDark] = useState(() => {
@@ -36,14 +36,7 @@ const HeroSection = () => {
       </div>
       <div className="absolute inset-0 bg-linear-to-br from-[#fcb9a0] to-[#fff7f4] opacity-70"></div>
       {/* Navbar */}
-      <header className="hero-navbar z-50">
-        <div className="hero-navbar-inner">
-          <div />
-          <div className="hero-toggle-wrapper">
-            <ThemeToggle dark={dark} onChange={setDark} />
-          </div>
-        </div>
-      </header>
+      <Navbar dark={dark} onChange={setDark} />
 
       {/* Main content */}
       <div className="hero-content z-50 max-w-7xl px-4 sm:px-6 md:px-8">

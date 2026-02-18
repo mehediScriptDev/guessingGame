@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PLAYERS from '../../../data/players';
 import SharedHeroBackground from '../../../components/SharedHeroBackground';
-import ThemeToggle from '../../../components/ThemeToggle';
+import Navbar from '../../../components/Navbar';
 import Result from './sections/Result';
 import Score from './sections/Score';
 
@@ -126,14 +126,8 @@ export default function GameView() {
   const tier = getTier(efficiency);
 
   /* ── shared pieces ── */
-
-  const navbar = (
-    <header className="relative z-30 w-full px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-      <div className="flex items-center justify-end max-w-275 mx-auto">
-        <ThemeToggle dark={dark} onChange={setDark} />
-      </div>
-    </header>
-  );
+  // use shared Navbar for consistent placement
+  const navbar = <Navbar dark={dark} onChange={setDark} />;
 
   /* ════════════════════ PLAYING ════════════════════ */
   if (phase === 'playing') {
@@ -206,8 +200,8 @@ export default function GameView() {
                 style={{ width: `${pct}%`, background: barColor }} 
               />
             </div>
-            <span 
-              className="text-sm sm:text-base font-extrabold min-w-6 text-center"
+            <span
+              className="text-sm sm:text-base font-extrabold min-w-9 px-2 py-1 text-center bg-[#DEFFE9] rounded-md flex items-center justify-center"
               style={{ fontFamily: 'var(--font-primary)', color: barColor }}
             >
               {Math.ceil(timeLeft)}

@@ -333,6 +333,8 @@ html.theme-dark .hero-toggle-emoji {
   transform: translateX(28px);
 }
 
+/* Countdown styling migrated to Tailwind utilities in JSX — removed legacy class. */
+
 /* ── Hero main content ── */
 .hero-content {
   position: relative;
