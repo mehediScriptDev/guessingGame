@@ -66,7 +66,7 @@ const HeroSection = () => {
           <span className="hero-title-orange">BALL</span>
         </h1>
 
-        <p className="hero-subtitle text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl my-2 sm:my-2.5 md:my-3">
+        <p className=" text-sm md:text-base lg:text-lg xl:text-xl my-2 sm:my-2.5 md:my-3">
           The ultimate test of NBA knowledge. Guess the
           <br />
           player before time runs out.
@@ -78,7 +78,7 @@ const HeroSection = () => {
             <div className="hero-card-body flex flex-col gap-0.5">
               <span className="hero-card-label text-xs sm:text-sm md:text-base text-[#140601]/72">Total Rounds</span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">05</span>
-              <span className="hero-card-sublabel text-sm sm:text-base md:text-lg lg:text-xl">Stages</span>
+              <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Stages</span>
               <span className="hero-card-desc text-[#140601]/72 text-xs sm:text-sm xl:text-base tracking-tight">
                 Five intense challenges to prove you're a true fan
               </span>
@@ -90,7 +90,7 @@ const HeroSection = () => {
             <div className="hero-card-body flex flex-col gap-0.5">
               <span className="hero-card-label text-xs sm:text-sm md:text-base text-[#140601]/72">Max score</span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">1000</span>
-              <span className="hero-card-sublabel text-sm sm:text-base md:text-lg lg:text-xl">Per round</span>
+              <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Per round</span>
               <span className="hero-card-desc text-[#140601]/72 text-xs sm:text-sm xl:text-base tracking-tighter">
                 Correct first name +400, correct last name +400, and +200 bonus if 6 seconds remain.
               </span>
@@ -102,7 +102,7 @@ const HeroSection = () => {
             <div className="hero-card-body flex flex-col gap-0.5">
               <span className="hero-card-label text-[#140601]/72 text-xs sm:text-sm md:text-base">Time limit</span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">12</span>
-              <span className="hero-card-sublabel text-sm sm:text-base md:text-lg lg:text-xl">Second</span>
+              <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Second</span>
               <span className="hero-card-desc text-[#140601]/72 text-xs sm:text-sm xl:text-base tracking-tight">Every second counts—faster = more points!</span>
             </div>
           </div>

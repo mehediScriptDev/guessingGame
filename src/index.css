@@ -406,7 +406,7 @@ html.theme-dark .hero-toggle-emoji {
   align-items: center;
   gap: 14px;
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  /* border: 1px solid var(--card-border); */
   border-radius: 16px;
   padding: 20px 18px;
   text-align: left;
