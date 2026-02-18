@@ -133,22 +133,19 @@
     scroll-behavior: smooth;
   }
 
+  /* Hide global scrollbar while preserving scrolling (mouse/touch/keyboard) */
+  /* Chrome, Safari and Opera */
   ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(143, 143, 143, 0.4);
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  body {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(100, 100, 100, 0.4) transparent;
+    display: none;
   }
 
+  /* Firefox */
+  html, body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Utility class (keeps compatibility if used elsewhere) */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

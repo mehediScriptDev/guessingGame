@@ -16,7 +16,7 @@ export default function Result({ result, round, ROUNDS, nextRound, bgBottom, nav
       style={{ background: 'transparent' }}
     >
       {navbar}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-190 mx-auto px-4 sm:px-6 pb-10 sm:pb-20 text-center">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-190 mx-auto px-4 sm:px-6 pb-10 sm:pb-20 text-center">
         <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-25 md:h-25 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 ${iconClass}`}>
           {isPerfect || isPartial ? (
             <Trophy size={40} className="sm:w-12 sm:h-12" />

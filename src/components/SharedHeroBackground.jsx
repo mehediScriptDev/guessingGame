@@ -12,7 +12,7 @@ export default function SharedHeroBackground({ children }) {
       {/* ── Layer 2: /bg.png basketball image ── */}
       <div className="hero-bg-wrap relative">
         <img src="/bg.png" alt="" className="h-full w-full object-cover object-top" />
-        <div className="absolute inset-0" />
+        <div className="fixed inset-0" />
       </div>
 
       {/* ── Layer 3: warm gradient overlay ── */}

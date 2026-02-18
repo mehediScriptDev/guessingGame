@@ -8,7 +8,7 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
       style={{ background: 'transparent' }}
     >
       {navbar}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
         {/* Logo */}
         <div className="mx-auto mb-2 sm:mb-3 md:mb-4 w-24 sm:w-28  md:w-32 lg:w-36 xl:w-40">
           <img 
