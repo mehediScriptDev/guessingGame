@@ -61,17 +61,8 @@ const HeroSection = () => {
           }}
         />
       )}
-      {/* overlay — light: warm gradient / dark: near-transparent dark tint */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: dark
-            ? 'rgba(8, 2, 1, 0.35)'
-            : 'linear-gradient(to bottom right, #fcb9a0, #fff7f4)',
-          opacity: dark ? 1 : 0.9,
-          zIndex: 2,
-        }}
-      />
+      {/* overlay — use shared hero overlay so dark mode color is consistent */}
+      <div className="absolute inset-0 bg-linear-to-br from-[#fcb9a0] to-[#fff7f4] opacity-70 hero-bg-overlay" />
       {/* Navbar */}
       <Navbar dark={dark} onChange={setDark} />
 
