@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PLAYERS from '../../../data/players';
+import SharedHeroBackground from '../../../components/SharedHeroBackground';
+import Result from './sections/Result';
+import Score from './sections/Score';
 
 function shuffle(arr) {
   const a = [...arr];
@@ -122,19 +125,10 @@ export default function GameView() {
   const tier = getTier(efficiency);
 
   /* ── shared pieces ── */
-  const bgBottom = (
-    <>
-      <div className="absolute bottom-0 left-0 w-full h-1/2 z-0 pointer-events-none">
-        <img src="/bg.png" alt="" className="w-full h-full object-cover object-[center_top] block" />
-        <div className="absolute inset-0" />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-[#fcb9a0] to-[#fff7f4] dark:from-gray-800 dark:to-gray-900 opacity-70 z-0" />
-    </>
-  );
 
   const navbar = (
     <header className="relative z-30 w-full px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-      <div className="flex items-center justify-end max-w-[1100px] mx-auto">
+      <div className="flex items-center justify-end max-w-275 mx-auto">
         <div className="flex items-center gap-2 sm:gap-3">
           <span 
             className="text-[10px] sm:text-[11px] font-bold tracking-[1.5px] uppercase"
@@ -150,7 +144,7 @@ export default function GameView() {
             <span className={`absolute text-xs sm:text-sm z-20 pointer-events-none top-1/2 -translate-y-1/2 transition-all duration-300 ${dark ? 'left-7 sm:left-8' : 'left-2'}`}>
               {dark ? '🌙' : '☀️'}
             </span>
-            <div className={`w-5 sm:w-[22px] h-5 sm:h-[22px] bg-white rounded-full shadow-md transition-transform duration-300 z-10 ${dark ? 'translate-x-6 sm:translate-x-7' : ''}`} />
+            <div className={`w-5 sm:w-5.5 h-5 sm:h-5.5 bg-white rounded-full shadow-md transition-transform duration-300 z-10 ${dark ? 'translate-x-6 sm:translate-x-7' : ''}`} />
           </button>
         </div>
       </div>
@@ -160,14 +154,14 @@ export default function GameView() {
   /* ════════════════════ PLAYING ════════════════════ */
   if (phase === 'playing') {
     return (
+      <SharedHeroBackground>
       <section 
         className="relative w-full min-h-screen flex flex-col overflow-hidden"
-        style={{ background: 'var(--bg-gradient)' }}
+        style={{ background: 'transparent' }}
       >
-        {bgBottom}
         {navbar}
-        <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-[760px] mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
-          <div className="mx-auto mb-2 w-20 sm:w-24 md:w-28">
+        <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-190 mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
+          <div className="mx-auto mb-2 w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36">
             <img
               src={dark ? '/topImageBlack.png' : '/topImage.png'}
               alt="Logo"
@@ -175,11 +169,11 @@ export default function GameView() {
             />
           </div>
 
-          <div className="flex items-end justify-between border-b border-black/10 dark:border-white/10 pb-1.5 sm:pb-2 mb-4 sm:mb-5 w-full">
+          <div className="flex items-end justify-between border-y! border-[#14060129]/37! dark:border-white/10 pb-1.5 sm:pb-2 mb-4 sm:mb-5 w-full py-2.5">
             <div className="flex flex-col">
               <span 
-                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase"
-                style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase text-[#140601]"
+                style={{ fontFamily: 'var(--font-primary)' }}
               >
                 CURRENT SCORE
               </span>
@@ -191,15 +185,15 @@ export default function GameView() {
               </span>
             </div>
             <span 
-              className="self-center text-xs sm:text-sm font-bold tracking-wider text-[#ff6b2d]"
+              className="self-center text-xs sm:text-sm xl:text-base font-bold tracking-wider text-[#ff6b2d] rounded-lg"
               style={{ fontFamily: 'var(--font-primary)' }}
             >
               ROUND {String(round).padStart(2, '0')}/{String(ROUNDS).padStart(2, '0')}
             </span>
             <div className="flex flex-col items-end">
               <span 
-                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase"
-                style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase text-[#140601]"
+                style={{ fontFamily: 'var(--font-primary)' }}
               >
                 POT. POINTS
               </span>
@@ -212,17 +206,17 @@ export default function GameView() {
             </div>
           </div>
 
-          <div className="w-full max-w-[600px] mx-auto mb-4 sm:mb-5 rounded-xl sm:rounded-2xl overflow-hidden bg-[rgba(30,20,15,0.85)] border-2 sm:border-3 border-[rgba(80,60,40,0.5)] dark:border-[rgba(120,80,50,0.4)] shadow-2xl">
+          <div className="w-full max-w-150 mx-auto mb-4 sm:mb-5 rounded-xl sm:rounded-2xl overflow-hidden bg-[rgba(30,20,15,0.85)] border-2 sm:border-3 border-[rgba(80,60,40,0.5)] dark:border-[rgba(120,80,50,0.4)] shadow-2xl">
             <img 
               src={player.image} 
               alt="Guess this player" 
-              className="w-full h-auto block min-h-[240px] sm:min-h-[280px] object-cover"
+              className="w-full h-auto block min-h-60 sm:min-h-70 object-cover"
               style={{ background: 'linear-gradient(135deg, #3a2a1a 0%, #1a100a 100%)' }}
             />
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 max-w-[600px] mx-auto mb-4 sm:mb-5 w-full">
-            <div className="flex-1 h-3 sm:h-[14px] rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
+          <div className="flex items-center gap-2 sm:gap-3 max-w-150 mx-auto mb-4 sm:mb-5 w-full">
+            <div className="flex-1 h-3 sm:h-3.5 rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
               <div 
                 className="h-full rounded-full transition-[width] duration-100 ease-linear"
                 style={{ width: `${pct}%`, background: barColor }} 
@@ -236,295 +230,78 @@ export default function GameView() {
             </span>
           </div>
 
-          <form className="flex gap-0 max-w-[520px] mx-auto mb-2 sm:mb-3 rounded-lg overflow-hidden shadow-lg" onSubmit={handleSubmit}>
-            <input
-              className="flex-1 px-4 sm:px-5 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold tracking-wide outline-none border-2 border-transparent border-l-4 border-l-[#ff6b2d] backdrop-blur-sm transition-colors focus:border-[#ff6b2d]"
-              style={{ 
-                fontFamily: 'var(--font-primary)',
-                color: 'var(--hero-title-color)',
-                background: 'var(--card-bg)'
-              }}
-              type="text"
-              placeholder="GUESS THE PLAYER"
-              value={guess}
-              onChange={(e) => {
-                setGuess(e.target.value);
-                guessRef.current = e.target.value;
-              }}
-              autoFocus
-            />
-            <button 
-              type="submit" 
-              className="px-5 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-bold text-[#ff6b2d] border-2 border-transparent border-l backdrop-blur-sm cursor-pointer transition-all duration-200 hover:bg-[#ff6b2d] hover:text-white"
-              style={{ 
-                fontFamily: 'var(--font-primary)',
-                background: 'var(--card-bg)', 
-                borderLeftColor: 'var(--card-border)' 
-              }}
-            >
-              Submit
-            </button>
+          <form className="relative flex gap-0 max-w-130 mx-auto mb-2 sm:mb-3 rounded-xl overflow-hidden  bg-linear-to-r w-full from-[#F6662E] to-[#FCD4C4] p-0.5 lg:p-1 shadow-xl" onSubmit={handleSubmit}>
+            <div className="relative flex-1">
+              <input
+                className="w-full pr-28 px-4 sm:px-5 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold tracking-wide text-[#140601B8] outline-none border-2 border-transparent backdrop-blur-sm transition-colors rounded-xl"
+                style={{ 
+                  fontFamily: 'var(--font-primary)',
+                  // color: 'var(--hero-title-color)',
+                  background: 'var(--card-bg)'
+                }}
+                type="text"
+                placeholder="GUESS THE PLAYER"
+                value={guess}
+                onChange={(e) => {
+                  setGuess(e.target.value);
+                  guessRef.current = e.target.value;
+                }}
+                autoFocus
+              />
+              <button 
+                type="submit" 
+                className="absolute right-0 top-1/2 -translate-y-1/2 px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm xl:text-base font-bold text-[#FFF8F5] border-2 rounded-xl border-transparent backdrop-blur-sm cursor-pointer transition-all duration-200 bg-[#ff6b2d] hover:text-white"
+                style={{ 
+                  fontFamily: 'var(--font-primary)',
+                  
+                  borderLeftColor: 'var(--card-border)' 
+                }}
+              >
+                Submit
+              </button>
+            </div>
           </form>
           <p 
-            className="text-xs m-0"
-            style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            className="text-xs sm:text-base xl:text-lg text-[#140601B8]/72 m-0"
+            style={{ fontFamily: 'var(--font-primary)' }}
           >
             Tip: Try first name, last name or full name.
           </p>
         </div>
       </section>
+      </SharedHeroBackground>
     );
   }
 
   /* ════════════════════ RESULT ════════════════════ */
   if (phase === 'result' && result) {
-    const isPerfect = result.type === 'perfect';
-    const isPartial = result.type === 'partial';
-    const iconClass = isPerfect
-      ? 'bg-[rgba(187,247,208,0.45)] dark:bg-[rgba(34,197,94,0.15)] text-[#16a34a]'
-      : isPartial
-        ? 'bg-[rgba(254,215,170,0.45)] dark:bg-[rgba(249,115,22,0.15)] text-[#ea580c]'
-        : 'bg-[rgba(254,202,202,0.45)] dark:bg-[rgba(239,68,68,0.15)] text-[#dc2626]';
-    const heading = isPerfect ? 'Perfect!' : isPartial ? 'Close!' : 'INCORRECT.';
-
     return (
-      <section 
-        className="relative w-full min-h-screen flex flex-col overflow-hidden"
-        style={{ background: 'var(--bg-gradient)' }}
-      >
-        {bgBottom}
-        {navbar}
-        <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-[760px] mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-10 sm:pb-12 text-center">
-          <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 ${iconClass}`}>
-            {isPerfect || isPartial ? (
-              <svg
-                width="40"
-                height="40"
-                className="sm:w-12 sm:h-12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7" />
-                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7" />
-                <path d="M4 22h16" />
-                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22" />
-                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22" />
-                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-              </svg>
-            ) : (
-              <svg
-                width="40"
-                height="40"
-                className="sm:w-12 sm:h-12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="m15 9-6 6" />
-                <path d="m9 9 6 6" />
-              </svg>
-            )}
-          </div>
-          <h2 
-            className="text-3xl sm:text-4xl md:text-[36px] m-0 mb-1"
-            style={{ fontFamily: 'var(--font-display)', color: 'var(--hero-title-color)' }}
-          >
-            {heading}
-          </h2>
-          <p className="m-0 mb-6 sm:mb-7">
-            <span 
-              className="text-xl sm:text-2xl md:text-[22px] text-[#ff6b2d]"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              +{result.points}
-            </span>
-            <span 
-              className="text-sm ml-1"
-              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
-            >
-              {' '}PTS
-            </span>
-          </p>
-          <div 
-            className="max-w-[420px] mx-auto mb-5 sm:mb-6 rounded-xl px-6 sm:px-8 py-5 sm:py-6 backdrop-blur-xl text-center"
-            style={{ 
-              background: 'var(--card-bg)', 
-              border: '1px solid var(--card-border)' 
-            }}
-          >
-            <span 
-              className="block mb-1.5 text-xs"
-              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
-            >
-              The player was
-            </span>
-            <h3 
-              className="text-xl sm:text-2xl font-bold m-0 mb-1.5"
-              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-title-color)' }}
-            >
-              {result.player.firstName} {result.player.lastName}.
-            </h3>
-            <span 
-              className="text-xs"
-              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
-            >
-              {result.player.team} • {result.player.era}
-            </span>
-          </div>
-          <button 
-            className="block w-full max-w-[420px] mx-auto px-6 sm:px-8 py-3 sm:py-3.5 border-none rounded-lg text-sm sm:text-[15px] font-bold text-white bg-[#ff6b2d] cursor-pointer transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
-            style={{ fontFamily: 'var(--font-primary)' }}
-            onClick={nextRound}
-          >
-            {round >= ROUNDS ? 'See Results' : 'Next Round'}
-          </button>
-        </div>
-      </section>
+      <SharedHeroBackground>
+        <Result 
+          result={result}
+          round={round}
+          ROUNDS={ROUNDS}
+          nextRound={nextRound}
+          navbar={navbar}
+          dark={dark}
+        />
+      </SharedHeroBackground>
     );
   }
 
-  /* ════════════════════ GAME OVER ════════════════════ */
+  /* ════════════════════ GAMEOVER ════════════════════ */
   return (
-    <section 
-      className="relative w-full min-h-screen flex flex-col overflow-hidden"
-      style={{ background: 'var(--bg-gradient)' }}
-    >
-      {bgBottom}
-      {navbar}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-[760px] mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
-        {/* Logo */}
-        <div className="mx-auto mb-1 w-28 sm:w-32 md:w-[130px]">
-          <img 
-            src={dark ? '/topImageBlack.png' : '/topImage.png'} 
-            alt="Logo" 
-            className="w-full h-auto block mx-auto drop-shadow-lg" 
-          />
-        </div>
-
-        {/* Your Score heading */}
-        <h2 
-          className="text-3xl sm:text-4xl md:text-[40px] font-normal my-1 mb-3 sm:mb-4 tracking-wide"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          <span className="text-[#ff6b2d] italic">Your </span>
-          <span style={{ color: 'var(--hero-title-color)' }}>Score</span>
-        </h2>
-
-        {/* Score card */}
-        <div 
-          className="inline-block rounded-xl px-8 sm:px-10 py-3 sm:py-4 mb-1.5 backdrop-blur-xl"
-          style={{ 
-            background: 'var(--card-bg)', 
-            border: '1px solid var(--card-border)' 
-          }}
-        >
-          <span 
-            className="text-4xl sm:text-5xl md:text-[52px] leading-none"
-            style={{ fontFamily: 'var(--font-display)', color: 'var(--hero-title-color)' }}
-          >
-            {String(score).padStart(2, '0')}
-          </span>
-        </div>
-        <p 
-          className="text-[9px] sm:text-[10px] font-bold tracking-[2px] uppercase m-0 mb-4 sm:mb-5"
-          style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
-        >
-          ACCUMULATED SKILL POINTS
-        </p>
-
-        {/* Stats row */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-[560px] mx-auto mb-6 sm:mb-7">
-          <div 
-            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
-            style={{ 
-              background: 'var(--card-bg)', 
-              border: '1px solid var(--card-border)' 
-            }}
-          >
-            <span 
-              className="block text-[11px] font-semibold mb-1"
-              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
-            >
-              Efficiency
-            </span>
-            <span 
-              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              {String(efficiency).padStart(2, '0')}%
-            </span>
-          </div>
-          <div 
-            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
-            style={{ 
-              background: 'var(--card-bg)', 
-              border: '1px solid var(--card-border)' 
-            }}
-          >
-            <span 
-              className="block text-[11px] font-semibold mb-1"
-              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
-            >
-              Buckets
-            </span>
-            <span 
-              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              {String(buckets).padStart(2, '0')}/{String(ROUNDS).padStart(2, '0')}
-            </span>
-          </div>
-          <div 
-            className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-[18px] text-left backdrop-blur-xl"
-            style={{ 
-              background: 'var(--card-bg)', 
-              border: '1px solid var(--card-border)' 
-            }}
-          >
-            <span 
-              className="block text-[11px] font-semibold mb-1"
-              style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
-            >
-              Tier
-            </span>
-            <span 
-              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              {tier}
-            </span>
-          </div>
-        </div>
-
-        {/* Action buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-[480px] mx-auto">
-          <Link 
-            to="/auth/login" 
-            className="flex-1 inline-flex items-center justify-center px-4 sm:px-5 py-3 sm:py-3.5 border-none rounded-lg text-xs sm:text-sm font-bold text-white bg-[#ff6b2d] cursor-pointer no-underline transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
-            style={{ fontFamily: 'var(--font-primary)' }}
-          >
-            Log In To Save Score
-          </Link>
-          <button 
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 border-2 border-[#ff6b2d] rounded-lg text-xs sm:text-sm font-bold text-[#ff6b2d] bg-transparent cursor-pointer transition-all duration-200 hover:bg-[#ff6b2d] hover:text-white hover:-translate-y-0.5"
-            style={{ fontFamily: 'var(--font-primary)' }}
-            onClick={handlePlayAgain}
-          >
-            <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            Play Again
-          </button>
-        </div>
-      </div>
-    </section>
+    <SharedHeroBackground>
+      <Score 
+        score={score}
+        efficiency={efficiency}
+        tier={tier}
+        buckets={buckets}
+        ROUNDS={ROUNDS}
+        navbar={navbar}
+        dark={dark}
+        handlePlayAgain={handlePlayAgain}
+      />
+    </SharedHeroBackground>
   );
 }

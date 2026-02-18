@@ -1,10 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import SharedHeroBackground from '../../components/SharedHeroBackground';
 
 const RootLayout = () => {
   return (
-    <main>
-      <Outlet />
-    </main>
+    <SharedHeroBackground>
+      <main>
+        <Outlet />
+      </main>
+    </SharedHeroBackground>
   );
 };
 
