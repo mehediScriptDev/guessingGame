@@ -435,13 +435,14 @@ html.theme-dark .hero-card:hover {
   background: linear-gradient(135deg, #e394f5 0%,#f6eeeb 50%, #f6eeeb 100%);
 }
 html.theme-dark .hero-card-1 {
-  background: linear-gradient(135deg, rgba(248, 178, 151, 0.25) 0%, rgba(40, 22, 12, 0.7) 100%);
+  /* background: linear-gradient(135deg, rgba(248, 178, 151, 0.25) 0%,rgba(40, 22, 12, 0.7) 50%, rgba(40, 22, 12, 0.8) 100%); */
+  @apply bg-linear-to-r from-[#f8b297] to-[#140601];
 }
 html.theme-dark .hero-card-2 {
-  background: linear-gradient(135deg, rgba(157, 221, 246, 0.2) 0%, rgba(40, 22, 12, 0.7) 100%);
+  @apply bg-linear-to-r from-[#9dddf6] to-[#140601];
 }
 html.theme-dark .hero-card-3 {
-  background: linear-gradient(135deg, rgba(227, 148, 245, 0.2) 0%, rgba(40, 22, 12, 0.7) 100%);
+  @apply bg-linear-to-r from-[#e394f5] to-[#140601];
 }
 
 .hero-card-icon {
@@ -499,7 +500,7 @@ html.theme-dark .hero-card-3 {
   color: #fff !important;
   background: linear-gradient(135deg, #ff6b2d 0%, #ff8a4a 100%);
   border: none;
-  border-radius: 9999px;
+  border-radius: 8px;
   padding: 14px 48px;
   letter-spacing: 0.5px;
   cursor: pointer;

@@ -31,19 +31,47 @@ const HeroSection = () => {
 
   return (
     <section
-      className="hero-section relative bg-linear-to-t from-[#fbc1ab] to-[#fff8f5] dark:from-gray-800 dark:to-gray-900"
+      className="hero-section relative"
       style={{
-        backgroundImage: "url('cornerbg.png')",
+        backgroundColor: dark ? '#0d0402' : undefined,
+        backgroundImage: dark ? undefined : "url('cornerbg.png')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      {/* bg.png (layer 1) + translucent overlay (layer 2) */}
-      <div className="hero-bg-wrap relative">
+      {/* bg.png — bottom half basketball court */}
+      <div className="hero-bg-wrap relative" style={{ zIndex: 0 }}>
         <img src="/bg.png" alt="" className="h-full w-full object-cover object-top" />
-        <div className="absolute inset-0" />
       </div>
-      <div className="absolute inset-0 bg-linear-to-br from-[#fcb9a0] to-[#fff7f4] opacity-70"></div>
+      {/* darkcorner.png — rotated diamond (Figma: 2144×2144 @ 46°, top:-1993px left:-555px on 1090px frame) */}
+      {dark && (
+        <img
+          src="/darkcorner.png"
+          alt=""
+          className="pointer-events-none absolute"
+          style={{
+            width: '140vw',
+            height: '140vw',
+            top: '-95vw',
+            // left: '-35vw',
+            // transform: 'rotate(46deg)',
+            transformOrigin: 'top left',
+            objectFit: 'cover',
+            zIndex: 1,
+          }}
+        />
+      )}
+      {/* overlay — light: warm gradient / dark: near-transparent dark tint */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: dark
+            ? 'rgba(8, 2, 1, 0.35)'
+            : 'linear-gradient(to bottom right, #fcb9a0, #fff7f4)',
+          opacity: dark ? 1 : 0.9,
+          zIndex: 2,
+        }}
+      />
       {/* Navbar */}
       <Navbar dark={dark} onChange={setDark} />
 
@@ -61,7 +89,7 @@ const HeroSection = () => {
           <span className="hero-title-white">YOUKNOW</span>
           <span className="hero-title-orange">BALL</span>
         </h1>
-        <p className="my-2 text-sm sm:my-2.5 md:my-3 md:text-base lg:text-lg xl:text-xl">
+        <p className={`my-2 text-sm sm:my-2.5 md:my-3 md:text-base lg:text-lg xl:text-xl ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]'}`}>
           The ultimate test of NBA knowledge. Guess the
           <br />
           player before time runs out.
@@ -74,14 +102,14 @@ const HeroSection = () => {
               className="hero-card-icon h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
             />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className="hero-card-label text-xs text-[#140601]/72 sm:text-sm md:text-base">
+              <span className={`hero-card-label text-xs sm:text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
                 Total Rounds
               </span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 05
               </span>
               <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Stages</span>
-              <span className="hero-card-desc text-xs tracking-tight text-[#140601]/72 sm:text-sm xl:text-base">
+              <span className={`hero-card-desc text-xs tracking-tight sm:text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
                 Five intense challenges to prove you're a true fan
               </span>
             </div>
@@ -94,14 +122,14 @@ const HeroSection = () => {
               className="hero-card-icon h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
             />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className="hero-card-label text-xs text-[#140601]/72 sm:text-sm md:text-base">
+              <span className={`hero-card-label text-xs sm:text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
                 Max score
               </span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 1000
               </span>
               <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Per round</span>
-              <span className="hero-card-desc text-xs tracking-tighter text-[#140601]/72 sm:text-sm xl:text-base">
+              <span className={`hero-card-desc text-xs tracking-tighter sm:text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
                 Correct first name +400, correct last name +400, and +200 bonus if 6 seconds remain.
               </span>
             </div>
@@ -114,14 +142,14 @@ const HeroSection = () => {
               className="hero-card-icon h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
             />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className="hero-card-label text-xs text-[#140601]/72 sm:text-sm md:text-base">
+              <span className={`hero-card-label text-xs sm:text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
                 Time limit
               </span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 12
               </span>
               <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Second</span>
-              <span className="hero-card-desc text-xs tracking-tight text-[#140601]/72 sm:text-sm xl:text-base">
+              <span className={`hero-card-desc text-xs tracking-tight sm:text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
                 Every second counts—faster = more points!
               </span>
             </div>
