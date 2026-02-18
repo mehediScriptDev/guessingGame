@@ -52,6 +52,7 @@ export default function GameView() {
   const doneRef = useRef(false);
   const timerRef = useRef(null);
   const timeRef = useRef(DURATION);
+  const perfectAudioRef = useRef(null);
 
   const player = PLAYERS[order[(round - 1) % PLAYERS.length]];
 
@@ -76,6 +77,16 @@ export default function GameView() {
     return () => clearInterval(timerRef.current);
   }, [phase, round]);
 
+  // initialize perfect sound once
+  useEffect(() => {
+    try {
+      // use existing sound file (excellent.mp3) for perfect guesses
+      perfectAudioRef.current = new Audio('/sounds/excellent.mp3');
+    } catch (e) {
+      perfectAudioRef.current = null;
+    }
+  }, []);
+
   /* ── process guess ── */
   function doProcess(text, tl) {
     const g = text.trim().toLowerCase();
@@ -91,6 +102,16 @@ export default function GameView() {
     setResult({ type, points: pts, player });
     setScore((s) => s + pts);
     setPhase('result');
+
+    // play perfect sound on perfect guess
+    try {
+      if (matched === 2 && perfectAudioRef.current) {
+        perfectAudioRef.current.currentTime = 0;
+        perfectAudioRef.current.play().catch(() => {});
+      }
+    } catch (e) {
+      // ignore
+    }
   }
 
   function handleSubmit(e) {
@@ -240,7 +261,7 @@ export default function GameView() {
             </div>
           </form>
           <p 
-            className="text-xs sm:text-base xl:text-lg text-[#140601B8]/72 m-0"
+            className="text-xs sm:text-base xl:text-lg text-[#140601B8] m-0"
             style={{ fontFamily: 'var(--font-primary)' }}
           >
             Tip: Try first name, last name or full name.

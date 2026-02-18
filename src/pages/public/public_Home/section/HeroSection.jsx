@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../../../components/Navbar';
 
@@ -19,6 +19,15 @@ const HeroSection = () => {
       localStorage.setItem('theme', 'light');
     }
   }, [dark]);
+
+  const clickAudioRef = useRef(null);
+  useEffect(() => {
+    try {
+      clickAudioRef.current = new Audio('/sounds/click.mp3');
+    } catch (e) {
+      clickAudioRef.current = null;
+    }
+  }, []);
 
   return (
     <section
@@ -122,6 +131,15 @@ const HeroSection = () => {
         <div className="hero-cta-wrapper mt-4 sm:mt-6 md:mt-8">
           <Link
             to="/game"
+            onClick={() => {
+              try {
+                const a = clickAudioRef.current;
+                if (a) {
+                  a.currentTime = 0;
+                  a.play().catch(() => {});
+                }
+              } catch (e) {}
+            }}
             className="hero-cta-btn px-6 py-2.5 text-xs sm:px-10 sm:py-3 sm:text-sm md:px-12 md:py-3.5 md:text-base shadow-2xl"
           >
             Enter The Arena

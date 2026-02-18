@@ -28,12 +28,14 @@ const router = createBrowserRouter(
       <Route path="/game" element={<GameView />} />
 
       <Route path="auth" element={<AuthLayout />}>
-        {/* Auth related routes can be added here */}
-        <Route path="login" element={<LoginView />} />
+        {/* Auth related routes can be added here (register/reset/set-password remain under /auth) */}
         <Route path="register" element={<RegisterView />} />
         <Route path="reset-password" element={<ResetPasswordView />} />
         <Route path="set-password" element={<SetPasswordView />} />
       </Route>
+
+     
+      <Route path="/login" element={<LoginView />} />
 
       <Route path="*" element={<NotFound />} />
     </>
