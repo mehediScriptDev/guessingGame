@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PLAYERS from '../../../data/players';
+import SharedHeroBackground from '../../../components/SharedHeroBackground';
 import Result from './sections/Result';
 import Score from './sections/Score';
 
@@ -124,15 +125,6 @@ export default function GameView() {
   const tier = getTier(efficiency);
 
   /* ── shared pieces ── */
-  const bgBottom = (
-    <>
-      <div className="absolute bottom-0 left-0 w-full h-1/2 z-0 pointer-events-none">
-        <img src="/bg.png" alt="" className="w-full h-full object-cover object-[center_top] block" />
-        <div className="absolute inset-0" />
-      </div>
-      <div className="absolute inset-0 bg-linear-to-br from-[#fcb9a0] to-[#fff7f4] dark:from-gray-800 dark:to-gray-900 opacity-70 z-0" />
-    </>
-  );
 
   const navbar = (
     <header className="relative z-30 w-full px-4 sm:px-6 md:px-8 py-3 sm:py-4">
@@ -162,14 +154,14 @@ export default function GameView() {
   /* ════════════════════ PLAYING ════════════════════ */
   if (phase === 'playing') {
     return (
+      <SharedHeroBackground>
       <section 
         className="relative w-full min-h-screen flex flex-col overflow-hidden"
-        style={{ background: 'var(--bg-gradient)' }}
+        style={{ background: 'transparent' }}
       >
-        {bgBottom}
         {navbar}
         <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-190 mx-auto px-4 sm:px-6 pb-10 sm:pb-12 text-center">
-          <div className="mx-auto mb-2 w-20 sm:w-24 md:w-28">
+          <div className="mx-auto mb-2 w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36">
             <img
               src={dark ? '/topImageBlack.png' : '/topImage.png'}
               alt="Logo"
@@ -177,11 +169,11 @@ export default function GameView() {
             />
           </div>
 
-          <div className="flex items-end justify-between border-b border-black/10 dark:border-white/10 pb-1.5 sm:pb-2 mb-4 sm:mb-5 w-full">
+          <div className="flex items-end justify-between border-y! border-[#14060129]/37! dark:border-white/10 pb-1.5 sm:pb-2 mb-4 sm:mb-5 w-full py-2.5">
             <div className="flex flex-col">
               <span 
-                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase"
-                style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase text-[#140601]"
+                style={{ fontFamily: 'var(--font-primary)' }}
               >
                 CURRENT SCORE
               </span>
@@ -193,15 +185,15 @@ export default function GameView() {
               </span>
             </div>
             <span 
-              className="self-center text-xs sm:text-sm font-bold tracking-wider text-[#ff6b2d]"
+              className="self-center text-xs sm:text-sm xl:text-base font-bold tracking-wider text-[#ff6b2d] rounded-lg"
               style={{ fontFamily: 'var(--font-primary)' }}
             >
               ROUND {String(round).padStart(2, '0')}/{String(ROUNDS).padStart(2, '0')}
             </span>
             <div className="flex flex-col items-end">
               <span 
-                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase"
-                style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+                className="text-[9px] sm:text-[10px] font-bold tracking-[1.2px] uppercase text-[#140601]"
+                style={{ fontFamily: 'var(--font-primary)' }}
               >
                 POT. POINTS
               </span>
@@ -270,43 +262,46 @@ export default function GameView() {
             </div>
           </form>
           <p 
-            className="text-xs m-0"
-            style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+            className="text-xs sm:text-base xl:text-lg text-[#140601B8]/72 m-0"
+            style={{ fontFamily: 'var(--font-primary)' }}
           >
             Tip: Try first name, last name or full name.
           </p>
         </div>
       </section>
+      </SharedHeroBackground>
     );
   }
 
   /* ════════════════════ RESULT ════════════════════ */
   if (phase === 'result' && result) {
     return (
-      <Result 
-        result={result}
-        round={round}
-        ROUNDS={ROUNDS}
-        nextRound={nextRound}
-        bgBottom={bgBottom}
-        navbar={navbar}
-        dark={dark}
-      />
+      <SharedHeroBackground>
+        <Result 
+          result={result}
+          round={round}
+          ROUNDS={ROUNDS}
+          nextRound={nextRound}
+          navbar={navbar}
+          dark={dark}
+        />
+      </SharedHeroBackground>
     );
   }
 
   /* ════════════════════ GAMEOVER ════════════════════ */
   return (
-    <Score 
-      score={score}
-      efficiency={efficiency}
-      tier={tier}
-      buckets={buckets}
-      ROUNDS={ROUNDS}
-      bgBottom={bgBottom}
-      navbar={navbar}
-      dark={dark}
-      handlePlayAgain={handlePlayAgain}
-    />
+    <SharedHeroBackground>
+      <Score 
+        score={score}
+        efficiency={efficiency}
+        tier={tier}
+        buckets={buckets}
+        ROUNDS={ROUNDS}
+        navbar={navbar}
+        dark={dark}
+        handlePlayAgain={handlePlayAgain}
+      />
+    </SharedHeroBackground>
   );
 }

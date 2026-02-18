@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
+import { Play } from 'lucide-react';
 
 export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBottom, navbar, dark, handlePlayAgain }) {
   return (
     <section 
       className="relative w-full min-h-screen flex flex-col overflow-hidden"
-      style={{ background: 'var(--bg-gradient)' }}
+      style={{ background: 'transparent' }}
     >
-      {bgBottom}
       {navbar}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
         {/* Logo */}
-        <div className="mx-auto mb-2 sm:mb-3 md:mb-4 w-28 sm:w-32 md:w-32.5">
+        <div className="mx-auto mb-2 sm:mb-3 md:mb-4 w-24 sm:w-28  md:w-32 lg:w-36 xl:w-40">
           <img 
             src={dark ? '/topImageBlack.png' : '/topImage.png'} 
             alt="Logo" 
@@ -29,7 +29,7 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
 
         {/* Score card */}
         <div 
-          className="inline-block rounded-xl px-8 sm:px-10 py-3 sm:py-4 mb-1.5 backdrop-blur-xl"
+          className="inline-block mt-2 rounded-xl px-8 sm:px-10 py-3 sm:py-4 mb-1.5 backdrop-blur-xl"
           style={{ 
             background: 'var(--card-bg)', 
             border: '1px solid var(--card-border)' 
@@ -43,14 +43,14 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
           </span>
         </div>
         <p 
-          className="text-[9px] sm:text-[10px] font-bold tracking-[2px] uppercase m-0 mb-4 sm:mb-5"
-          style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
+          className="text-[9px] sm:text-[10px] lg:text-base font-bold tracking-[2px] uppercase m-0 mb-4 sm:mb-5 text-[#0A0300B8]/72"
+          style={{ fontFamily: 'var(--font-primary)' }}
         >
           ACCUMULATED SKILL POINTS
         </p>
 
         {/* Stats row */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-7xl mx-auto mb-6 sm:mb-7">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-7xl mx-auto mb-6 sm:mb-7 xl:mb-10">
           <div 
             className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-4.5 text-left backdrop-blur-xl"
             style={{ 
@@ -117,19 +117,17 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-120 mx-auto">
           <Link 
             to="/auth/login" 
-            className="flex-1 inline-flex items-center justify-center px-4 sm:px-5 py-3 sm:py-3.5 border-none rounded-lg text-xs sm:text-sm font-bold text-white bg-[#ff6b2d] cursor-pointer no-underline transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
+            className="flex-1 inline-flex items-center justify-center px-4 sm:px-5 py-3 sm:py-3.5 border-none rounded-lg text-xs sm:text-sm xl:text-base font-bold text-white bg-[#ff6b2d] cursor-pointer no-underline transition-all duration-200 hover:bg-[#ff8a4a] hover:-translate-y-0.5"
             style={{ fontFamily: 'var(--font-primary)' }}
           >
             Log In To Save Score
           </Link>
           <button 
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 border-2 border-[#ff6b2d] rounded-lg text-xs sm:text-sm font-bold text-[#ff6b2d] bg-transparent cursor-pointer transition-all duration-200 hover:bg-[#ff6b2d] hover:text-white hover:-translate-y-0.5"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 border-2 border-[#ff6b2d] rounded-lg text-xs sm:text-sm xl:text-base font-bold text-[#ff6b2d] bg-transparent cursor-pointer transition-all duration-200 hover:bg-[#ff6b2d] hover:text-white hover:-translate-y-0.5"
             style={{ fontFamily: 'var(--font-primary)' }}
             onClick={handlePlayAgain}
           >
-            <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
+            <Play className="sm:w-4 sm:h-4 w-3 h-3" />
             Play Again
           </button>
         </div>
