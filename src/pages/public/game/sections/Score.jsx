@@ -8,9 +8,9 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
     >
       {bgBottom}
       {navbar}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-190 mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-start w-full max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-10 sm:pb-12 text-center">
         {/* Logo */}
-        <div className="mx-auto mb-1 w-28 sm:w-32 md:w-32.5">
+        <div className="mx-auto mb-2 sm:mb-3 md:mb-4 w-28 sm:w-32 md:w-32.5">
           <img 
             src={dark ? '/topImageBlack.png' : '/topImage.png'} 
             alt="Logo" 
@@ -20,7 +20,7 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
 
         {/* Your Score heading */}
         <h2 
-          className="text-3xl sm:text-4xl md:text-[40px] font-normal my-1 mb-3 sm:mb-4 tracking-wide"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal my-1 mb-3 sm:mb-4 tracking-wide"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           <span className="text-[#ff6b2d] italic">Your </span>
@@ -36,7 +36,7 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
           }}
         >
           <span 
-            className="text-4xl sm:text-5xl md:text-[52px] leading-none"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-none"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--hero-title-color)' }}
           >
             {String(score).padStart(2, '0')}
@@ -50,7 +50,7 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
         </p>
 
         {/* Stats row */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-140 mx-auto mb-6 sm:mb-7">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-7xl mx-auto mb-6 sm:mb-7">
           <div 
             className="flex-1 rounded-xl px-3 sm:px-4 py-4 sm:py-4.5 text-left backdrop-blur-xl"
             style={{ 
@@ -59,13 +59,13 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
             }}
           >
             <span 
-              className="block text-[11px] font-semibold mb-1"
+              className="block text-[11px] lg:text-xl font-semibold mb-1"
               style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
             >
               Efficiency
             </span>
             <span 
-              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
+              className="block text-3xl sm:text-4xl lg:text-5xl leading-none text-[#ff6b2d]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               {String(efficiency).padStart(2, '0')}%
@@ -79,13 +79,13 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
             }}
           >
             <span 
-              className="block text-[11px] font-semibold mb-1"
+              className="block text-[11px] lg:text-xl font-semibold mb-1"
               style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
             >
               Buckets
             </span>
             <span 
-              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
+              className="block text-3xl sm:text-4xl lg:text-5xl leading-none text-[#ff6b2d]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               {String(buckets).padStart(2, '0')}/{String(ROUNDS).padStart(2, '0')}
@@ -99,13 +99,13 @@ export default function Score({ score, efficiency, tier, buckets, ROUNDS, bgBott
             }}
           >
             <span 
-              className="block text-[11px] font-semibold mb-1"
+              className="block text-[11px] lg:text-xl font-semibold mb-1"
               style={{ fontFamily: 'var(--font-primary)', color: 'var(--hero-muted)' }}
             >
               Tier
             </span>
             <span 
-              className="block text-2xl sm:text-3xl md:text-[28px] leading-none text-[#ff6b2d]"
+              className="block text-3xl sm:text-4xl lg:text-5xl leading-none text-[#ff6b2d]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               {tier}
