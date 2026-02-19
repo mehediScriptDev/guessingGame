@@ -525,6 +525,14 @@ html.theme-dark .hero-card-3 {
   flex-wrap: wrap;
 }
 @media (max-width: 768px) {
+  /* darkcorner — bigger and shifted down on mobile only */
+  .hero-darkcorner {
+    /* width: 220vw !important;
+    height: 220vw !important;
+    top: -70vw !important; */
+    @apply w-[220vw]! h-[220vw]! -top-[70vw]!;
+  }
+
   .hero-title {
     font-size: 34px;
   }
@@ -558,14 +566,6 @@ html.theme-dark .hero-card-3 {
     font-size: 13px;
   }
 }
-
-/* ═══════════════════════════════════════════ */
-/*  LOGIN PAGE                                 */
-/* ═══════════════════════════════════════════ */
-/* Login styles removed — replaced by Tailwind utilities inside LoginView.jsx */
-
-/* ═══════════════════════════════════════════ */
-/* Leaderboard modal styles removed — replaced by Tailwind utilities inside LeaderboardModal.jsx */
 
 @keyframes lb-pop {
   0% { opacity: 0; transform: scale(0.92); }

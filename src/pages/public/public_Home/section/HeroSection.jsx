@@ -48,7 +48,7 @@ const HeroSection = () => {
         <img
           src="/darkcorner.png"
           alt=""
-          className="pointer-events-none absolute"
+          className="hero-darkcorner pointer-events-none absolute"
           style={{
             width: '140vw',
             height: '140vw',
@@ -93,14 +93,14 @@ const HeroSection = () => {
               className="hero-card-icon h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
             />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className={`hero-card-label text-xs sm:text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
+              <span className={`hero-card-label text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
                 Total Rounds
               </span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 05
               </span>
               <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Stages</span>
-              <span className={`hero-card-desc text-xs tracking-tight sm:text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
+              <span className={`hero-card-desc tracking-tight text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
                 Five intense challenges to prove you're a true fan
               </span>
             </div>
@@ -113,14 +113,14 @@ const HeroSection = () => {
               className="hero-card-icon h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
             />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className={`hero-card-label text-xs sm:text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
+              <span className={`hero-card-label text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
                 Max score
               </span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 1000
               </span>
               <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Per round</span>
-              <span className={`hero-card-desc text-xs tracking-tighter sm:text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
+              <span className={`hero-card-desc tracking-tighter text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
                 Correct first name +400, correct last name +400, and +200 bonus if 6 seconds remain.
               </span>
             </div>
@@ -133,14 +133,14 @@ const HeroSection = () => {
               className="hero-card-icon h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
             />
             <div className="hero-card-body flex flex-col gap-0.5">
-              <span className={`hero-card-label text-xs sm:text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
+              <span className={`hero-card-label text-sm md:text-base ${dark ? 'text-[#FFF8F5]' : 'text-[#140601]/72'}`}>
                 Time limit
               </span>
               <span className="hero-card-number text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 12
               </span>
               <span className="hero-card-sublabel text-base md:text-lg lg:text-xl">Second</span>
-              <span className={`hero-card-desc text-xs tracking-tight sm:text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
+              <span className={`hero-card-desc tracking-tight text-sm xl:text-base ${dark ? 'text-[#FFF8F5]/85' : 'text-[#140601]/72'}`}>
                 Every second counts—faster = more points!
               </span>
             </div>
