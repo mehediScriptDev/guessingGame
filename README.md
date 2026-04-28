@@ -1,26 +1,94 @@
-# React Redux Tailwind CSS Boilerplate 🚀
+# 🏀 NBA Player Guessing Game
 
-A modern, production-ready React + Redux + Tailwind CSS boilerplate with best practices, feature-rich setup, and comprehensive tooling.
+A fast-paced, interactive React-based guessing game where players test their knowledge of NBA players by identifying them from their images. Built with React 19, Vite, and Tailwind CSS.
+
+## 🎮 How the Game Works
+
+The NBA Player Guessing Game is a real-time guessing challenge where you have **5 rounds** to identify as many NBA players as possible.
+
+### Game Mechanics
+
+**Each Round:**
+- 15 seconds on the clock
+- An NBA player image is displayed
+- Type the player's first and/or last name to make your guess
+- The faster you guess, the more points you earn!
+
+### 📊 Scoring System
+
+Points are based on accuracy and speed:
+
+| Accuracy | Points | Description |
+|----------|--------|-------------|
+| **Perfect** | Up to 1000 | Both first AND last name correct |
+| **Partial** | Up to 500 | Either first OR last name correct |
+| **Incorrect** | 0 | Player name not recognized |
+
+**Maximum Game Score:** 5,000 points (1,000 points × 5 rounds)
+
+### 🏆 Performance Tiers
+
+Your final score determines your tier based on efficiency:
+
+| Efficiency | Tier | Status |
+|-----------|------|--------|
+| 90%+ | **GOAT** | Greatest of All Time |
+| 70-89% | **MVP** | Most Valuable Player |
+| 50-69% | **All-Star** | Elite Performer |
+| 30-49% | **Starter** | Solid Player |
+| 10-29% | **Rookie** | Newcomer |
+| <10% | **Bench** | Keep Practicing |
+
+## 🎯 How to Play
+
+### Step 1: Start the Game
+Click the "Play" button on the home page to begin your guessing challenge.
+
+### Step 2: View the Player
+Each round displays a player's image. Study their appearance carefully!
+
+![Game Dark Screenshot](public/gamedarkss.png)
+
+### Step 3: Make Your Guess
+- Type the player's **first name**, **last name**, or **both**
+- Names are case-insensitive
+- Press **Enter** or click **Submit** to lock in your guess
+
+### Step 4: Earn Points
+Instant feedback shows you:
+- Whether your guess was **Perfect**, **Close**, or **Incorrect**
+- The points you earned for that round
+- Your cumulative score
+
+![Single Score Light](public/singlescorelight.png)
+
+### Step 5: Continue Through All Rounds
+After each round, advance to the next player. Complete all 5 rounds to finish the game.
+
+### Step 6: View Your Results
+After completing all 5 rounds, check your:
+- **Total Score** (0-5,000)
+- **Performance Tier** (GOAT to Bench)
+- **Leaderboard** to see how you rank against other players
+- **Accuracy** (number of perfect guesses)
+
+![Scoreboard Light](public/scoreboardlight.png)
 
 ## ✨ Features
 
-- **React 19** - Latest React with hooks support
-- **Redux Toolkit** - Simplified Redux state management with Redux Toolkit
-- **Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
-- **Vite** - Lightning-fast build tool and development server
-- **React Router v7** - Client-side routing with latest React Router
-- **ESLint & Prettier** - Code quality and formatting tools
-- **Axios** - Promise-based HTTP client with interceptors
-- **React Toastify** - Toast notifications
-- **Lucide React** - Beautiful and consistent icon library
-- **Responsive Design** - Mobile-first responsive components
-- **TypeScript Ready** - Pre-configured for TypeScript projects
+- **Real-Time Scoring** - Watch your points accumulate instantly
+- **Interactive Feedback** - Get immediate results on each guess
+- **Sound Effects** - Audio feedback for perfect guesses
+- **Dark/Light Theme** - Toggle between themes for comfortable viewing
+- **Responsive Design** - Play on desktop, tablet, or mobile
+- **Leaderboard** - Compete with other players and track rankings
+- **NBA Player Database** - Guess from a curated collection of legendary NBA players
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 16+ 
+- Node.js 16+
 - npm or yarn
 
 ### Installation
@@ -28,7 +96,7 @@ A modern, production-ready React + Redux + Tailwind CSS boilerplate with best pr
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd react-boilerplate
+cd guessingGame
 ```
 
 2. Install dependencies:
@@ -44,7 +112,7 @@ cp .env.example .env
 4. Configure your environment variables:
 ```env
 VITE_API_BASE_URL=http://localhost:3000/api
-VITE_APP_NAME=React Boilerplate
+VITE_APP_NAME=NBA Guessing Game
 ```
 
 5. Start the development server:
@@ -62,373 +130,205 @@ The application will be available at `http://localhost:5173`
 - `npm run lint` - Run ESLint to check code quality
 - `npm run format` - Format code with Prettier
 
-## 📁 Project Structure
+## 📁 Game Project Structure
 
 ```
 src/
-├── components/
-│   ├── common/           # Shared components across features
-│   └── ui/              # Basic UI components (Button, Input, etc.)
+├── components/              # Reusable UI components
+│   ├── Navbar.jsx          # Navigation bar with theme toggle
+│   ├── LeaderboardModal.jsx # Display rankings
+│   ├── ThemeToggle.jsx      # Dark/light theme switcher
+│   └── ui/                 # Basic UI components
 ├── config/
-│   ├── constants.js     # Application constants
-│   └── env.js          # Environment variable validation
-├── features/
-│   ├── store.js        # Redux store configuration
-│   ├── auth/           # Authentication feature
-│   ├── counter/        # Counter example feature
-│   └── products/       # Products feature with API
-│       ├── productsAPI.js
-│       └── productsSlice.js
-├── pages/
-│   ├── admin/          # Admin-only pages
-│   ├── auth/           # Authentication pages
-│   ├── error/          # Error pages (404, 500, etc.)
-│   │   └── NotFound.jsx
-│   └── public/         # Public pages
-│       ├── public_about/
-│       │   └── AboutView.jsx
-│       ├── public_contact/
-│       │   └── ContactView.jsx
-│       └── public_Home/
-│           └── HomeView.jsx
+│   ├── constants.js        # Game constants (rounds, duration, etc.)
+│   └── env.js             # Environment configuration
+├── data/
+│   └── players.js          # NBA players database
+├── pages/public/game/
+│   ├── GameView.jsx        # Main game component
+│   ├── game.css           # Game styling
+│   └── sections/
+│       ├── Result.jsx      # Result display after guess
+│       └── Score.jsx       # Score display during game
 ├── router/
-│   ├── router.jsx      # Main router configuration
-│   ├── guard/          # Route guards for authentication
-│   └── layout/         # Layout components
-│       ├── FooterLayout.jsx
-│       ├── NavbarLayout.jsx
-│       └── RootLayout.jsx
-├── services/
-│   ├── axiosInstance.js    # Configured Axios instance
-│   ├── httpEndpoint.js     # API endpoint definitions
-│   └── httpMethods.js      # HTTP method helpers
+│   └── router.jsx          # Route configuration
+├── services/               # API communication
+│   ├── axiosInstance.js
+│   └── httpMethods.js
 └── utils/
-    ├── errorHandler.js     # Global error handling
-    ├── Helper.js          # General helper functions
-    ├── storage.js         # LocalStorage/SessionStorage helpers
-    └── validators.js      # Form validation functions
+    ├── cookies.js
+    ├── storage.js
+    └── validators.js
 ```
 
-## 🔧 Configuration
+## 🎮 Game Constants
 
-### Environment Variables
+The game is configured with the following constants (in `src/config/constants.js`):
 
-Create a `.env` file in the root directory:
+- **ROUNDS**: 5 rounds per game
+- **DURATION**: 15 seconds per round
+- **MAX_PER_ROUND**: 1,000 points maximum per round
+- **TOTAL_SCORE**: 5,000 points maximum
 
-```env
-# API Configuration
-VITE_API_BASE_URL=http://localhost:3000/api
+## 👥 NBA Players Database
 
-# App Configuration
-VITE_APP_NAME=React Boilerplate
+The game features legendary NBA players stored in [src/data/players.js](src/data/players.js):
+
+- LeBron James
+- Stephen Curry
+- Michael Jordan
+- Kobe Bryant
+- Kevin Durant
+
+You can easily add more players to expand the game database!
+
+## 🌙 Theme System
+
+The game supports dark and light themes with automatic persistence to localStorage:
+
+- **Light Theme** - Clean, bright interface perfect for daytime
+- **Dark Theme** - Easy on the eyes for comfortable gaming sessions
+- **Toggle Button** - Located in the Navbar for easy access
+
+## 📊 Scoring Algorithm
+
+The scoring system rewards speed and accuracy:
+
+```
+Points = (Time Remaining / Total Duration) × 1000 × Accuracy Multiplier
+
+Where Accuracy Multiplier is:
+- 1.0 for perfect guesses (both names)
+- 0.5 for partial guesses (one name)
+- 0.0 for incorrect guesses
 ```
 
-### Tailwind CSS
+## 🏆 Leaderboard
 
-Tailwind CSS 4 is configured with the `@tailwindcss/vite` plugin. Customize your design in the CSS file:
+Track your performance and compare with other players:
 
-```css
-@import "tailwindcss";
+- **Total Score** - Your final game score
+- **Performance Tier** - GOAT to Bench ranking
+- **Accuracy Rate** - Percentage of correct guesses
+- **Personal Best** - Your highest score
 
-@theme {
-  /* Your custom theme configuration */
-}
+## 🚀 Development
+
+### Starting the Development Server
+
+```bash
+npm run dev
 ```
 
-### Redux Store
+The server runs on `http://localhost:5173` with hot module reloading enabled.
 
-The store is configured in `src/features/store.js`. Add new features by creating slices:
-
-```javascript
-// src/features/myFeature/myFeatureSlice.js
-import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-  data: [],
-  loading: false,
-  error: null
-};
-
-export const myFeatureSlice = createSlice({
-  name: 'myFeature',
-  initialState,
-  reducers: {
-    setData: (state, action) => {
-      state.data = action.payload;
-    },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
-    }
-  }
-});
-
-export const { setData, setLoading, setError } = myFeatureSlice.actions;
-export default myFeatureSlice.reducer;
-```
-
-Then add it to the store:
-
-```javascript
-// src/features/store.js
-import { configureStore } from '@reduxjs/toolkit';
-import myFeatureReducer from './myFeature/myFeatureSlice';
-
-const store = configureStore({
-  reducer: {
-    myFeature: myFeatureReducer,
-    // ... other reducers
-  },
-});
-
-export default store;
-```
-
-## 📝 How to Use This Boilerplate
-
-### 1. Setting Up Your Project
-
-1. **Clone and Setup**: Follow the Quick Start guide above
-2. **Configure Environment**: Update `.env` with your API endpoints
-3. **Customize Branding**: Update app name, logo, and colors
-4. **Clean Example Code**: Remove example features you don't need
-
-### 2. Adding New Features
-
-#### Creating a New Page
-1. Create a new folder in `src/pages/public/` (or `admin/` for admin pages)
-2. Create your component file (e.g., `MyPageView.jsx`)
-3. Add the route in `src/router/router.jsx`
-
-```javascript
-// src/pages/public/my_page/MyPageView.jsx
-import React from 'react';
-
-const MyPageView = () => {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1>My New Page</h1>
-    </div>
-  );
-};
-
-export default MyPageView;
-```
-
-```javascript
-// src/router/router.jsx
-import MyPageView from '../pages/public/my_page/MyPageView';
-
-// Add to your routes
-<Route path="my-page" element={<MyPageView />} />
-```
-
-#### Creating a New Redux Feature
-1. Create a new folder in `src/features/`
-2. Create your slice file following the pattern in `src/features/products/`
-3. Add API functions if needed
-4. Connect to the store
-
-### 3. Working with APIs
-
-The boilerplate includes a configured Axios instance in `src/services/axiosInstance.js`:
-
-```javascript
-// Example API call
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axiosInstance from '../../services/axiosInstance';
-
-export const fetchMyData = createAsyncThunk(
-  'myFeature/fetchMyData',
-  async (params, { rejectWithValue }) => {
-    try {
-      const response = await axiosInstance.get('/my-endpoint', { params });
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-```
-
-### 4. Styling Components
-
-Use Tailwind CSS utility classes for styling:
-
-```javascript
-const MyComponent = () => {
-  return (
-    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">Title</h2>
-      <p className="text-gray-600 leading-relaxed">Content</p>
-      <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
-        Action
-      </button>
-    </div>
-  );
-};
-```
-
-### 5. Form Handling
-
-Example form with validation:
-
-```javascript
-import React, { useState } from 'react';
-
-const MyForm = () => {
-  const [formData, setFormData] = useState({ name: '', email: '' });
-  const [errors, setErrors] = useState({});
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.includes('@')) newErrors.email = 'Valid email is required';
-    return newErrors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = validate();
-    
-    if (Object.keys(newErrors).length === 0) {
-      // Handle successful submission
-      console.log('Form submitted:', formData);
-    } else {
-      setErrors(newErrors);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <input
-          type="text"
-          value={formData.name}
-          onChange={(e) => setFormData({...formData, name: e.target.value})}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-          placeholder="Name"
-        />
-        {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-      </div>
-      {/* More form fields... */}
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-md">
-        Submit
-      </button>
-    </form>
-  );
-};
-```
-
-## 🔒 Authentication Setup
-
-To add authentication to your app:
-
-1. **Create Auth Slice** in `src/features/auth/authSlice.js`
-2. **Add Auth API** functions in `src/features/auth/authAPI.js`
-3. **Create Route Guards** in `src/router/guard/`
-4. **Update Axios Interceptors** to handle tokens
-
-Example auth slice:
-
-```javascript
-// src/features/auth/authSlice.js
-import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-  user: null,
-  token: localStorage.getItem('token'),
-  isAuthenticated: false,
-  loading: false,
-  error: null
-};
-
-export const authSlice = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {
-    loginStart: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    loginSuccess: (state, action) => {
-      state.loading = false;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isAuthenticated = true;
-      localStorage.setItem('token', action.payload.token);
-    },
-    loginFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-      state.isAuthenticated = false;
-    },
-    logout: (state) => {
-      state.user = null;
-      state.token = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem('token');
-    }
-  }
-});
-
-export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.actions;
-export default authSlice.reducer;
-```
-
-## 🎨 Customization
-
-### Changing Colors and Themes
-Update your Tailwind theme by modifying the CSS:
-
-```css
-@theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-500: #3b82f6;
-  --color-primary-900: #1e3a8a;
-}
-```
-
-### Adding Custom Components
-Create reusable components in `src/components/`:
-
-```javascript
-// src/components/ui/Card.jsx
-const Card = ({ children, className = '', ...props }) => {
-  return (
-    <div 
-      className={`bg-white rounded-lg shadow-md p-6 ${className}`} 
-      {...props}
-    >
-      {children}
-    </div>
-  );
-};
-
-export default Card;
-```
-
-## 🚀 Deployment
-
-### Build for Production
+### Building for Production
 
 ```bash
 npm run build
 ```
 
+Creates an optimized production bundle in the `dist/` directory.
+
+### Running Linting
+
+```bash
+npm run lint
+```
+
+Checks code quality using ESLint.
+
+### Code Formatting
+
+```bash
+npm run format
+```
+
+Formats code using Prettier for consistent style.
+
+## 🎨 Technologies Used
+
+- **React 19** - Latest React with hooks
+- **Vite** - Ultra-fast build tool
+- **Tailwind CSS 4** - Utility-first styling
+- **React Router v7** - Client-side routing
+- **Lucide React** - Icon library
+- **JavaScript ES6+** - Modern JavaScript
+
+## 📱 Responsive Design
+
+The game is fully responsive and optimized for:
+
+- 📱 **Mobile** (320px and up)
+- 📲 **Tablets** (768px and up)
+- 💻 **Desktop** (1024px and up)
+
+All UI elements scale beautifully across devices.
+
+## 🚀 Deployment
+
+### Prerequisites for Deployment
+
+1. Have Node.js 16+ installed
+2. Project built successfully with `npm run build`
+3. Environment variables properly configured
+
 ### Deploy to Vercel
 
-1. Connect your repository to Vercel
-2. Set environment variables in Vercel dashboard
-3. Deploy automatically on push to main branch
+```bash
+npm install -g vercel
+vercel
+```
 
 ### Deploy to Netlify
 
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder to Netlify
-3. Configure redirects for SPA in `_redirects` file
+```bash
+npm run build
+# Upload the dist/ folder to Netlify
+```
+
+### Deploy to GitHub Pages
+
+```bash
+npm run build
+# Deploy the dist/ folder to gh-pages branch
+```
+
+## 📝 Tips for Better Gameplay
+
+1. **Study the Images** - Take time to carefully examine each player's face
+2. **Know Your NBA History** - Players span different eras (90s to 2010s)
+3. **Speed Counts** - Don't hesitate; guessing quickly earns more points
+4. **Partial Guesses** - If unsure, guessing just a first or last name is better than nothing
+5. **Practice** - Play multiple games to build familiarity with the players
+
+## 🐛 Troubleshooting
+
+### Game not responding
+- Refresh the page
+- Clear browser cache
+- Check internet connection
+
+### Sound not working
+- Ensure your browser allows audio playback
+- Check system volume
+- Verify browser permissions for audio
+
+### Scores not saving
+- Check that localStorage is enabled in your browser
+- Clear browser cache and cookies
+- Try a different browser
+
+## 📞 Support
+
+For issues or feedback:
+1. Check the browser console for error messages
+2. Verify all dependencies are installed: `npm install`
+3. Restart the development server: `npm run dev`
+
+## 📄 License
+
+This project is open source and available under the MIT License.
 
 ## 🤝 Contributing
 
