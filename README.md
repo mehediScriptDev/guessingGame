@@ -44,10 +44,16 @@ Your final score determines your tier based on efficiency:
 ### Step 1: Start the Game
 Click the "Play" button on the home page to begin your guessing challenge.
 
+| Dark Theme | Light Theme |
+|-----------|------------|
+| ![Game Dark](public/gamedark.png) | ![Game Light](public/gamelight.png) |
+
 ### Step 2: View the Player
 Each round displays a player's image. Study their appearance carefully!
 
-![Game Dark Screenshot](public/gamedarkss.png)
+| Dark Theme | Light Theme |
+|-----------|------------|
+| ![Game Dark Screenshot](public/gamedarkss.png) | ![Game View Light](public/gameviewlight.png) |
 
 ### Step 3: Make Your Guess
 - Type the player's **first name**, **last name**, or **both**
@@ -73,6 +79,17 @@ After completing all 5 rounds, check your:
 - **Accuracy** (number of perfect guesses)
 
 ![Scoreboard Light](public/scoreboardlight.png)
+
+## 🏆 Leaderboard
+
+Track your performance and compete with other players on the global leaderboard. See where you rank based on:
+
+- **Total Score** - Your final game score
+- **Performance Tier** - GOAT to Bench ranking  
+- **Accuracy Rate** - Percentage of correct guesses
+- **Personal Best** - Your highest score ever
+
+![Leaderboard Light](public/leaderboardlight.png)
 
 ## ✨ Features
 
@@ -202,15 +219,6 @@ Where Accuracy Multiplier is:
 - 0.5 for partial guesses (one name)
 - 0.0 for incorrect guesses
 ```
-
-## 🏆 Leaderboard
-
-Track your performance and compare with other players:
-
-- **Total Score** - Your final game score
-- **Performance Tier** - GOAT to Bench ranking
-- **Accuracy Rate** - Percentage of correct guesses
-- **Personal Best** - Your highest score
 
 ## 🚀 Development
 
